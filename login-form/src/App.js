@@ -1,9 +1,9 @@
-// Default formik login page from Getting started on Formik's website
+// Default formik login page used as base code
 import React from "react";
 import { Formik } from "formik";
 
 const Basic = () => (
-  <div>
+  <div class="form">
     <h1>Login to Flume Rides</h1>
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -52,8 +52,8 @@ const Basic = () => (
             value={values.password}
           />
           {errors.password && touched.password && errors.password}
-          <button type="submit" disabled={isSubmitting}>
-            Submit
+          <button type="login" disabled={isSubmitting}>
+            Login
           </button>
         </form>
       )}
