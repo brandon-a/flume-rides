@@ -26,13 +26,13 @@ const Basic = () => (
         ) {
           errors.email = "Invalid email address";
         }
-        if (!values.firstName || values.firstName == "First Name")
+        if (!values.firstName || values.firstName === "First Name")
           errors.firstName = "First Name Required";
-        if (!values.lastName || values.lastName == "Last Name")
+        if (!values.lastName || values.lastName === "Last Name")
           errors.lastName = "Last Name Required";
-        if (!values.university || values.university == "University")
+        if (!values.university || values.university === "University")
           errors.university = "University Name Required";
-        if (!values.password || values.password == "password")
+        if (!values.password || values.password === "password")
           errors.password = "Password Required";
         else if (
           !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(
