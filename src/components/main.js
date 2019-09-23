@@ -7,6 +7,8 @@ import Drive from './drive';
 import Ride from './ride';
 import Profile from './profile';
 import Logout from './logout';
+import CreateAccount from './createaccount';
+
 const Main = () => (
     <Switch>
         <Route exact path="/" component={LandingPage}/>
@@ -16,6 +18,7 @@ const Main = () => (
         <Route exact path="/ride" component={Ride}/>
         <Route exact path="/profile" component={Profile}/>
         <Route exact path="/logout" component={Logout}/>
+        <Route exact path="/createaccount" component={CreateAccount}/>
     </Switch>
 )
 

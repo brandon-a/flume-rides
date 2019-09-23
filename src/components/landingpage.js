@@ -26,7 +26,12 @@ class LandingPage extends Component{
                             {/* Drive */}
                             <a href="/ride" rel ="noopener noreferrer">
                                 <i className="fas fa-users"  aria-hidden="true"/>
-                            </a>                            
+                            </a>           
+
+                            {/* Sign up */}
+                            <a href="/createaccount" rel ="noopener noreferrer">
+                                <i className="fas fa-users"  aria-hidden="true"/>
+                            </a>                       
 
                         </div>
                         </div>
