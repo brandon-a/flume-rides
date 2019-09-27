@@ -23,6 +23,7 @@ class Ride extends Component{
                         <IconButton name="share"/>
                     </CardMenu>
                 </Card>
+
             )
         }
 
@@ -44,23 +45,23 @@ class Ride extends Component{
             )
         }
         
-        else if(this.state.activeTab === 2){
-            return(
-                <Card shadow={5} style={{minWidth:'450', margin:'auto'}}>
-                    <CardTitle style={{color: 'black', height: '176px', background: 'Url(https://p7.hiclipart.com/preview/411/606/476/giant-panda-polar-bear-stirfry-stunts-we-bare-bears-grizzly-bear-polar-bear.jpg) center / cover'}}>Ride 3</CardTitle>
-                    <CardText>
-                        nom nom nom nom
-                    </CardText>
-                    <CardActions border>
-                        <Button colored>Accept</Button>
-                        <Button colored>Decline</Button>
-                    </CardActions>
-                    <CardMenu style={{color:'#fff'}}>
-                        <IconButton name="share"/>
-                    </CardMenu>
-                </Card>
-            )
-        }
+        // else if(this.state.activeTab === 2){
+        //     return(
+        //         <Card shadow={5} style={{minWidth:'450', margin:'auto'}}>
+        //             <CardTitle style={{color: 'black', height: '176px', background: 'Url(https://p7.hiclipart.com/preview/411/606/476/giant-panda-polar-bear-stirfry-stunts-we-bare-bears-grizzly-bear-polar-bear.jpg) center / cover'}}>Ride 3</CardTitle>
+        //             <CardText>
+        //                 nom nom nom nom
+        //             </CardText>
+        //             <CardActions border>
+        //                 <Button colored>Accept</Button>
+        //                 <Button colored>Decline</Button>
+        //             </CardActions>
+        //             <CardMenu style={{color:'#fff'}}>
+        //                 <IconButton name="share"/>
+        //             </CardMenu>
+        //         </Card>
+        //     )
+        // }
     }
 
     
@@ -68,9 +69,8 @@ class Ride extends Component{
         return(
             <div className="categories">
                 <Tabs activeTab={this.state.activeTab} onChange={(tabId) => this.setState({ activeTab: tabId })} ripple>
-                    <Tab>Ride1</Tab>
-                    <Tab>Ride2</Tab>
-                    <Tab>Ride3</Tab>
+                    <Tab>From SJSU</Tab>
+                    <Tab>To SJSU</Tab>
                 </Tabs>
                 <section className="rides-grid">
                     <Grid className="rides-grid">

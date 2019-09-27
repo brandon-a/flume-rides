@@ -17,6 +17,8 @@ class App extends Component {
               <Link to="/drive">Drive</Link>
               <Link to="/ride">Ride</Link>
               <Link to="/profile">Profile</Link>
+              <Link to="/createaccount">Create</Link>
+              <Link to="/login">Login</Link>
               <Link to="/logout">Logout</Link>
             </Navigation>
           </Header>
@@ -27,6 +29,7 @@ class App extends Component {
               <Link to="/drive">Drive</Link>
               <Link to="/ride">Ride</Link>
               <Link to="/profile">Profile</Link>
+              <Link to="/login">Login</Link>
               <Link to="/logout">Logout</Link>
             </Navigation>
           </Drawer>
