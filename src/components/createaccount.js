@@ -5,8 +5,8 @@ import { Grid, Cell } from 'react-mdl';
 class CreateAccount extends Component{
     render(){
         return(
-            <div style={{width:'100%', margin: 'auto'}}>
-                <Grid className="form">
+            <div className="createaccount-body">
+                <Grid className="createaccount-grid">
                     <h1>
                     Welcome to Flume Rides!
                     <br />

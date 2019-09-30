@@ -1,25 +1,37 @@
 import React from 'react';
 import NavBar from 'react-bootstrap/Navbar';
 import './NavigationBar.css';
+import { Link } from 'react-router-dom';
+import SignedInLinks from './SignedInLinks';
+import SignedOutLinks from './SignedOutLinks';
 
-const navbar = props => (
-    <header className="navbar">
-        <nav className="navbar_tool">
-            <div></div>
-            <div className="navbar_logo"><a href="#home">Flume Rides</a></div>
-            <div className="navbar_items">
-                <ul>
-                <li><a href="#home">Home</a></li>
-                    <li><a href="landingpage.js">About</a></li>
-                    <li><a href="#profile">Profile</a></li>
-                    <li><a href="#drive">Drive</a></li>
-                    <li><a href="#ride">Ride</a></li>
-                    <li><a href="#logout">Logout</a></li>
-                </ul>
+const navbar = () => {
+    // <header className="navbar">
+    //     <nav className="navbar_tool">
+    //         <div></div>
+    //         <div className="navbar_logo"><a href="#home">Flume Rides</a></div>
+    //         <div className="navbar_items">
+    //             <ul>
+    //             <li><a href="#home">Home</a></li>
+    //                 <li><a href="landingpage.js">About</a></li>
+    //                 <li><a href="#profile">Profile</a></li>
+    //                 <li><a href="#drive">Drive</a></li>
+    //                 <li><a href="#ride">Ride</a></li>
+    //                 <li><a href="#logout">Logout</a></li>
+    //             </ul>
+    //         </div>
+    //     </nav>
+    // </header>
+    return (
+        <nav className="nav-wrapper blue darken-3">
+            <div className="container">
+                <Link to='/' className="brand-logo">Flume Rides</Link>
+                <SignedInLinks />
+                <SignedOutLinks />
             </div>
         </nav>
-    </header>
-)
+    )
+}
 /*{
     return(
         <>

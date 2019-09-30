@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 class App extends Component {
   render(){
     return(
+      // <div className="App">
+      //   <Navigationbar />
+      // </div>
       <div className="layout">
         <Layout>
           <Header className="navbar-color" title="FLUME RIDES" navbar>
