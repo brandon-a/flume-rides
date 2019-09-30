@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom';
 class App extends Component {
   render(){
     return(
+      // <div className="App">
+      //   <Navigationbar />
+      // </div>
       <div className="layout">
         <Layout>
           <Header className="navbar-color" title="FLUME RIDES" navbar>
@@ -17,6 +20,8 @@ class App extends Component {
               <Link to="/drive">Drive</Link>
               <Link to="/ride">Ride</Link>
               <Link to="/profile">Profile</Link>
+              <Link to="/createaccount">Create</Link>
+              <Link to="/login">Login</Link>
               <Link to="/logout">Logout</Link>
             </Navigation>
           </Header>
@@ -27,6 +32,7 @@ class App extends Component {
               <Link to="/drive">Drive</Link>
               <Link to="/ride">Ride</Link>
               <Link to="/profile">Profile</Link>
+              <Link to="/login">Login</Link>
               <Link to="/logout">Logout</Link>
             </Navigation>
           </Drawer>

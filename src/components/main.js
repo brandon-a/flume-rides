@@ -8,6 +8,8 @@ import Ride from './ride';
 import Profile from './profile';
 import Logout from './logout';
 import CreateAccount from './createaccount';
+import Login from './login';
+import Passengers from './passengers';
 
 const Main = () => (
     <Switch>
@@ -19,6 +21,8 @@ const Main = () => (
         <Route exact path="/profile" component={Profile}/>
         <Route exact path="/logout" component={Logout}/>
         <Route exact path="/createaccount" component={CreateAccount}/>
+        <Route exact path="/login" component={Login}/>
+        <Route exact path="/passengers" component={Passengers}/>
     </Switch>
 )
 
