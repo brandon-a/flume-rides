@@ -10,6 +10,7 @@ import Logout from './logout';
 import CreateAccount from './createaccount';
 import Login from './login';
 import Passengers from './passengers';
+import Home from './home';
 
 const Main = () => (
     <Switch>
@@ -23,6 +24,7 @@ const Main = () => (
         <Route exact path="/createaccount" component={CreateAccount}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/passengers" component={Passengers}/>
+        <Route exact path="/home" component={Home}/>
     </Switch>
 )
 

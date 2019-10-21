@@ -27,7 +27,7 @@ class App extends Component {
           </Header>
           <Drawer title="Contents">
             <Navigation>
-              <Link to="/landingpage">Home</Link>
+              <Link to="/home">Home</Link>
               <Link to="/about">About</Link>
               <Link to="/drive">Drive</Link>
               <Link to="/ride">Ride</Link>

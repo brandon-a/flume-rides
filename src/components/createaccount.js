@@ -55,21 +55,35 @@ class CreateAccount extends Component{
                     }}
                     >
                     {({ isSubmitting }) => (
+                        <Cell col={12}>
                         <Form>
-                        <Field type="firstName" name="firstName" />
-                        <ErrorMessage name="firstName" component="div" />
-                        <Field type="lastName" name="lastName" />
-                        <ErrorMessage name="lastName" component="div" />
-                        <Field type="university" name="university" />
-                        <ErrorMessage name="university" component="div" />
-                        <Field type="email" name="email" />
-                        <ErrorMessage name="email" component="div" />
-                        <Field type="password" name="password" />
-                        <ErrorMessage name="password" component="div" />
-                        <button type="Login" disabled={isSubmitting}>
-                            Login
-                        </button>
+                            <div className="input-field">
+                                <Field type="firstName" name="firstName" />                           
+                                <ErrorMessage name="firstName" component="div" />
+                            </div>
+                            <div className="input-field">
+                                <Field type="lastName" name="lastName" />
+                                <ErrorMessage name="lastName" component="div" />
+                            </div>
+                            <div className="input-field">
+                                <Field type="university" name="university" />                                
+                                <ErrorMessage name="university" component="div" />
+                            </div>
+                            <div className="input-field">
+                                <Field type="email" name="email" />
+                                <ErrorMessage name="email" component="div" />
+                            </div>
+                            <div className="input-field">
+                                <Field type="password" name="password" />
+                                <ErrorMessage name="password" component="div" />
+                            </div>
+                            <div className="input-field">
+                                <button type="Login" disabled={isSubmitting}>
+                                    Login
+                                </button>
+                            </div>
                         </Form>
+                        </Cell>
                     )}
                     </Formik>
                 </Grid>

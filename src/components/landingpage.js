@@ -4,13 +4,13 @@ import { Grid, Cell } from 'react-mdl';
 class LandingPage extends Component{
     render(){
         return(
-            <div style={{width:'100%', margin: 'auto'}}> 
+            <div className="landing-body"> 
                 <Grid className="landing-grid">
-                    <Cell col={12}>
+                <Cell col={12}>
                         <img 
-                        src="http://i1.hdslb.com/bfs/archive/ba5cfd393d15275c9a7cbc1f42ee88747b0136bb.jpg"
-                        alt="logo"
-                        className="logo-image"
+                            src="http://i1.hdslb.com/bfs/archive/ba5cfd393d15275c9a7cbc1f42ee88747b0136bb.jpg"
+                            alt="logo"
+                            className="logo-image"
                         />
 
                         <div className="banner">
