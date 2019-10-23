@@ -7,19 +7,14 @@ class CreateAccount extends Component{
         return(
             <div className="createaccount-body">
                 <Grid className="createaccount-grid">
-                    <h1>
-                    Welcome to Flume Rides!
-                    <br />
-                    Create an Account
-                    </h1>
                     <Formik
-                    initialValues={{
-                        firstName: "First Name",
-                        lastName: "Last Name",
-                        university: "University",
-                        email: "Email",
-                        password: "password"
-                    }}
+                    // initialValues={{
+                    //     firstName: "First Name",
+                    //     lastName: "Last Name",
+                    //     university: "University",
+                    //     email: "Email",
+                    //     password: "password"
+                    // }}
                     validate={values => {
                         let errors = {};
                         if (!values.email) {
@@ -56,24 +51,34 @@ class CreateAccount extends Component{
                     >
                     {({ isSubmitting }) => (
                         <Cell col={12}>
+                            <h1>
+                                Welcome to Flume Rides!
+                                <br />
+                                Create an Account
+                            </h1>
                         <Form>
                             <div className="input-field">
+                            <label htmlFor="firstName">First Name </label>
                                 <Field type="firstName" name="firstName" />                           
                                 <ErrorMessage name="firstName" component="div" />
                             </div>
                             <div className="input-field">
+                                <label htmlFor="lastName">Last Name </label>
                                 <Field type="lastName" name="lastName" />
                                 <ErrorMessage name="lastName" component="div" />
                             </div>
                             <div className="input-field">
+                                <label htmlFor="university">University </label>
                                 <Field type="university" name="university" />                                
                                 <ErrorMessage name="university" component="div" />
                             </div>
                             <div className="input-field">
+                                <label htmlFor="email">Email </label>
                                 <Field type="email" name="email" />
                                 <ErrorMessage name="email" component="div" />
                             </div>
                             <div className="input-field">
+                                <label htmlFor="password">Password </label>
                                 <Field type="password" name="password" />
                                 <ErrorMessage name="password" component="div" />
                             </div>

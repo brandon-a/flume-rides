@@ -11,7 +11,7 @@ import CreateAccount from './createaccount';
 import Login from './login';
 import Passengers from './passengers';
 import Home from './home';
-
+import GooglePlacesSearch from './GooglePlacesSearch';
 const Main = () => (
     <Switch>
         <Route exact path="/" component={LandingPage}/>
@@ -25,6 +25,7 @@ const Main = () => (
         <Route exact path="/login" component={Login}/>
         <Route exact path="/passengers" component={Passengers}/>
         <Route exact path="/home" component={Home}/>
+        <Route exact path="/GooglePlacesSearch" component={GooglePlacesSearch}/>
     </Switch>
 )
 
