@@ -5,7 +5,7 @@ CREATE TABLE `users` (
     `email` VARCHAR(50) NOT NULL,
     `school` VARCHAR(75) NOT NULL,
     `passwordHash` VARCHAR(256) NOT NULL,
-    `phone` VARCHAR(11) NOT NULL,
+    `phone` VARCHAR(12) NOT NULL,
     `car` VARCHAR(50),
     `major` VARCHAR(30),
 
