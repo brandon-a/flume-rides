@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Grid, Cell } from 'react-mdl';
+import GooglePlacesSearch from './GooglePlacesSearch';
 
 class Drive extends Component{
     render(){
@@ -24,6 +25,11 @@ class Drive extends Component{
                                 errors.time = "Time Required";
                                 if (!values.date || values.date === "date")
                                 errors.date = "Date Required";
+                                // else if (
+                                //     !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(
+                                //         values.date
+                                //     )
+                                // )
                                 return errors;
                             }}
                             onSubmit={(values, { setSubmitting }) => {
@@ -36,6 +42,7 @@ class Drive extends Component{
                             {({ isSubmitting }) => (
                                 <Cell col={12}>
                                 <Form>
+                                <GooglePlacesSearch /> 
                                     <div className="input-field">
                                     <label htmlFor="destination">Destination </label>
                                         <Field type="destination" name="destination" />                           
@@ -68,38 +75,6 @@ class Drive extends Component{
                                     </div>
                                 </Form>
                                 </Cell>
-                                // <form className="white" onSubmit={this.handleSubmit}>
-                                //     <h5 className = "grey-text text-darken-3">Create A Ride!</h5>
-                                //     <div className="input-field">
-                                //         <label htmlFor="destination">Destination</label>
-                                //         <Field type="destination" name=" " />                           
-                                //         <ErrorMessage name="destination" component="div" />
-                                //     </div>
-                                //     <div className="input-field">
-                                //         <label htmlFor="departure">Departure</label>
-                                //         <Field type="Depature" name="departure" />
-                                //         <ErrorMessage name="depature" component="div" />
-                                //     </div>
-                                //     <div className="input-field">
-                                //         <label htmlFor="time">Time </label>
-                                //         <Field type="time" name='time' />
-                                //     </div>
-                                //     <div className="input-field">
-                                //         <label htmlFor="date">Date </label>
-                                //         <input type="date" id='date' onChange={this.handleChange} />
-                                //     </div>
-                                //     <div className="input-field">
-                                //         <label htmlFor="cost">Cost </label>
-                                //         <input type="text" id='cost' onChange={this.handleChange} />
-                                //     </div>
-                                //     <div className="input-field">
-                                //         <label htmlFor="seats">Seats </label>
-                                //         <input type="text" id='seats' onChange={this.handleChange} />
-                                //     </div>
-                                //     <div className="input-field">
-                                //         <button className="btn pink lighten-1 z-depth-0">Create</button>
-                                //     </div>
-                                // </form>
                             )}
                         </Formik>
                     </Cell>
