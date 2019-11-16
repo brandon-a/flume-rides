@@ -16,7 +16,28 @@ module.exports = function(app, connection) {
             }
             console.log('successfully queried');
         });
-    });   
+    });
+    
+    app.get('/profile', (req, res) => {
+        email = req.body.email;
+        connection.query(query, (err, result) => {
+            "SELECT name FROM `users` WHERE `email` = '" + email + "';"
+            if(err) {
+                console.log(err);
+            }
+            console.log('successfully queried');
+            const user = {
+                name = result.name,
+                phone = result.phone,
+                email = result.email,
+                school = result.school,
+                major = result.major,
+                car = result.car
+            };
+            res.post(user);
+        });
+
+    })
     
     app.post('/new_user', (req, res) => {
         console.log('in post');

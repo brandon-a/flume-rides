@@ -13,7 +13,7 @@ const SELECT_ALL_QUERY = 'SELECT * FROM users'
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 's4A66#Bu!KRLBA',
     database: 'Flumes_Rides'
 });
 
