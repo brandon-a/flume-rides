@@ -275,11 +275,13 @@
   background: #bdc3c7;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  position: fixed;
-  width: 100%;
-  height: 100%;
   justify-content: center;
   padding-top: 2em;
+  padding-bottom: 2em;
+  /* position: flex;
+  width: 100%;
+  height: 100%;
+ */
 }
 
  /* Profile Page */
@@ -287,10 +289,10 @@
   text-align: center;
   justify-content: center;
   width: 80%;
-  height: 550px;
+  height: auto;
   background: white;
   color: black;
-  border: 2px solid blue;
+  border: 1px solid black;
   margin-bottom: 20 px;
 
 }
@@ -310,7 +312,7 @@
 
  /* Drive Page */
  .drive-grid {
-  text-align: center;
+  text-align: left;
   justify-content: center;
   width: 80%;
   height: 550px;
@@ -320,6 +322,11 @@
   margin-bottom: 20 px;
 
 }
+
+/* Drive Page
+.input-field{
+  text-align: left;
+} */
 
  /* Logout Page */
  .logout-body {

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 
-const navbar = () => {
+const navbar = props => {
     // <header className="navbar">
     //     <nav className="navbar_tool">
     //         <div></div>
@@ -22,17 +22,18 @@ const navbar = () => {
     //         </div>
     //     </nav>
     // </header>
-    return (
-        <nav className="nav-wrapper blue darken-3">
-            <div className="container">
-                <Link to='/' className="brand-logo">Flume Rides</Link>
-                <SignedInLinks />
-                <SignedOutLinks />
-            </div>
-        </nav>
-    )
 }
-/*{
+    // return (
+    //     <nav className="nav-wrapper blue darken-3">
+    //         <div className="container">
+    //             <Link to='/' className="brand-logo">Flume Rides</Link>
+    //             <SignedInLinks />
+    //             <SignedOutLinks />
+    //         </div>
+    //     </nav>
+    // )
+//}
+/*
     return(
         <>
     <Navbar bg = "dark" expand="lg">
@@ -52,7 +53,8 @@ const navbar = () => {
     <br />
 </>
 */
- //   );
+//    );
+
 //}
 
 export default navbar;
