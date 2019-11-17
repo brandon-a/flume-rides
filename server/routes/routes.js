@@ -21,9 +21,9 @@ module.exports = function(app, connection) {
         });
     });   
 */
-    app.get('get_ride_list', (req, res)=> {
+    app.get('/get_ride_list', (req, res)=> {
         //might be let destination = req.query.destination
-        let source_location = req.body.source_location
+        let source_location = req.body.source_location;
         let destination = req.body.destination;
         console.log('Getting list of rides given destination: ' + destination + ' and source location: ' + source_location);
 
