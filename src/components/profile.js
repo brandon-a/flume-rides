@@ -3,34 +3,35 @@ import { Grid, Cell, List, ListItem, ListItemContent } from 'react-mdl';
 import axios from 'axios';
 
 class Profile extends Component{
-    state = {
-        name: '',
-        phone: '',
-        email: 'BA@gmail.com',
-        school: '',
-        major: '',
-        car: ''
+
+    constructor(props){
+        super(props);
+        this.state = {
+            name: 'Name Name',
+            phone: '(XXX) XXX-XXXX',
+            email: 'BA@gmail.com',
+            school: 'San José State University',
+            major: 'Computer Science',
+            car: 'Honda Accord 2016 | White'
+        };
     }
     
     componentDidMount() {
 
-        console.log(this.state.email);
-        
         axios.get('/profile', {
             params: {
                 email: this.state.email
             }
         })
         .then(function (response) {
-            console.log(response);
-            const result = JSON.parse(response);
-            this.setState({name: result.name});
-            this.setState({phone: result.phone});
-            this.setState({email: result.email});
-            this.setState({school: result.school});
-            this.setState({major: result.major});
-            this.setState({car: result.car});
-            console.log(this.state.name);
+            this.setState({
+                name: response.data[0].name,
+                phone: response.data[0].phone,
+                email: response.data[0].email,
+                school: response.data[0].school,
+                major: response.data[0].major,
+                car: response.data[0].car
+            });
           })
           .catch(function (error) {
             console.log(error);
@@ -45,7 +46,7 @@ class Profile extends Component{
             <div className="profile-body">
                 <Grid className="profile-grid">
                     <Cell col={6}>
-                        <h2><input id="this.state.name" type="text"></input></h2>
+                        <h2>{ this.state.name }</h2>
                         <img 
                             src="https://p7.hiclipart.com/preview/411/606/476/giant-panda-polar-bear-stirfry-stunts-we-bare-bears-grizzly-bear-polar-bear.jpg"
                             alt="avatar"
@@ -65,31 +66,31 @@ class Profile extends Component{
                                 <ListItem>
                                     <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
-                                        (XXX)XXX-XXXX
+                                        { this.state.phone }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
-                                        meowmeow@flumerides.com
+                                        { this.state.email }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
-                                        San José State University
+                                        { this.state.school }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
-                                        Computer Science 
+                                        { this.state.major }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
-                                        Honda Accord 2016 | White
+                                        { this.state.car }
                                     </ListItemContent>
                                 </ListItem>
                             </List>

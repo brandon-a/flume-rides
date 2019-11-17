@@ -19,7 +19,7 @@ module.exports = function(app, connection) {
     });
     
     app.get('/profile', (req, res) => {
-        email = "BA@gmail.com";
+        let email = req.body.user.email;
         console.log(email);
         let query = "SELECT * FROM Flumes_Rides.users WHERE email = '" + email + "';"
         connection.query(query, (err, result) => {
@@ -28,14 +28,6 @@ module.exports = function(app, connection) {
             }
             console.log('successfully queried');
             console.log(result);
-            // const user = {
-            //     name: result.name,
-            //     phone: result.phone,
-            //     email: result.email,
-            //     school: result.school,
-            //     major: result.major,
-            //     car: result.car
-            // };
             (err)?res.send(err):res.json({users: result});
         });
 
