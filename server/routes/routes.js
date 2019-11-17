@@ -19,8 +19,7 @@ module.exports = function(app, connection) {
     });
     
     app.get('/profile', (req, res) => {
-        // let email = req.body.user.email;
-        let email = "BA@gmail.com";
+        let email = req.query.email;
         console.log(email);
         let query = "SELECT * FROM Flumes_Rides.users WHERE email = '" + email + "';"
         connection.query(query, (err, result) => {

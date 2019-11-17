@@ -17,14 +17,14 @@ class Profile extends Component{
     }
     
     componentDidMount() {
-        axios.get('/profile', {
+        var self = this;
+        axios.get('/profile', { 
             params: {
-                email: this.state.email
+                email: 'BA@gmail.com'
             }
         })
         .then(function (response) {
-            console.log(response.data.users[0]);
-            this.setState({
+            self.setState({
                 name: response.data.users[0].name,
                 phone: response.data.users[0].phone,
                 email: response.data.users[0].email,
