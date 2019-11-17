@@ -25,7 +25,7 @@ module.exports = function(app, connection) {
         let name = req.body.user.name;
         let email = req.body.user.email;
         let school = req.body.user.school;
-        let password = req.body.password;
+        let password = req.body.user.password;
 
         //salt = crypto.randomBytes(16).toString('hex'); 
         //hash = crypto.pbkdf2Sync(password, salt,   1000, 64, `sha512`).toString(`hex`); 
