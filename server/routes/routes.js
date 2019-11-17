@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 module.exports = function(app, connection) {
     app.get('/', (req, res) => {
         connection.query('SELECT * FROM users', function (err, data) {
@@ -24,6 +26,9 @@ module.exports = function(app, connection) {
         let email = req.body.user.email;
         let school = req.body.user.school;
         let password = req.body.password;
+
+        //salt = crypto.randomBytes(16).toString('hex'); 
+        //hash = crypto.pbkdf2Sync(password, salt,   1000, 64, `sha512`).toString(`hex`); 
     
         console.log('name: ' + name + ', email: ' + email);
     
