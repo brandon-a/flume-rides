@@ -6,19 +6,37 @@ module.exports = function(app, connection) {
             (err)?res.send(err):res.json({users: data});
         });
     });
-    
+    /*
     app.get('/login_verify', (req, res) => {
         email = req.body.email;
         password = req.body.password
     
         connection.query(query, (err, result) => {
-            "SELECT name FROM `users` WHERE `email` = '" + email +  "', passwordHash = '" + password + "'; ";
+            #"SELECT name FROM `users` WHERE `email` = '" + email +  "', passwordHash = '" + password + "'; ";
             if(err) {
                 console.log(err);
             }
             console.log('successfully queried');
+            res.send
         });
     });   
+*/
+    app.get('get_ride_list', (req, res)=> {
+        //might be let destination = req.query.destination
+        let source_location = req.body.source_location
+        let destination = req.body.destination;
+        console.log('Getting list of rides given destination: ' + destination + ' and source location: ' + source_location);
+
+        let query = "SELECT * FROM rides WHERE destination = '" + destination  + "' AND source_location = '" + source_location + "');";
+
+        connection.query(query, (err, res) => {
+            if(err) {
+                console.log('Error occurred: ' + err);
+            }
+            res.json({tuples: res});
+            console.log('Query of (' + destination + ", " + source_location + ") succesful.");
+        });
+    });
     
     app.post('/new_user', (req, res) => {
         console.log('Creating a new user');
