@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Grid, Cell } from 'react-mdl';
+import axios from 'axios';
 
 class Drive extends Component{
+    state = {
+        datetime: '',
+        destination: '',
+        source_location: '',
+        cost: ''
+    }
+
     render(){
         return(
             <div className="drive-body">
@@ -24,9 +32,32 @@ class Drive extends Component{
                                 errors.time = "Time Required";
                                 if (!values.date || values.date === "date")
                                 errors.date = "Date Required";
+
+                                //valid datetime = 2010-04-30 07:27:39
+                                this.setState({datetime: values.date + ' ' + values.time + ':00'});
+                                this.setState({destination: values.destination});
+                                this.setState({source_location: values.departure});
+                                this.setState({cost: values.cost});
+
                                 return errors;
+                                
+                                
+
                             }}
                             onSubmit={(values, { setSubmitting }) => {
+                                const ride_entry = {
+                                    datetime: this.state.datetime,
+                                    destination: this.state.destination,
+                                    source_location: this.state.source_location,
+                                    cost: this.state.cost
+                                };
+                                console.log('INSIDE ONSUBMIT BEFORE POST');
+                                axios.post('/new_ride', { ride_entry })
+                                    .then(res => {
+                                        console.log(res);
+                                        console.log(res.data);
+                                    });    
+
                                 setTimeout(() => {
                                 alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
