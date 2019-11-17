@@ -12,6 +12,7 @@ import Login from './login';
 import Passengers from './passengers';
 import Home from './home';
 import GooglePlacesSearch from './GooglePlacesSearch';
+
 const Main = () => (
     <Switch>
         <Route exact path="/" component={LandingPage}/>

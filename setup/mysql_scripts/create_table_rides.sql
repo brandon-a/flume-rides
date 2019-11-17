@@ -5,9 +5,9 @@ CREATE TABLE `rides` (
     `datetime` DATETIME NOT NULL,
     `otherLocation` VARCHAR(75) NOT NULL,
     `school` VARCHAR(256) NOT NULL,
-    `toschool` BOOLEAN NOT NULL,
+    `toschool` BOOLEAN,
     `cost` DECIMAL NOT NULL,
-    `spotsAvailable` INT NOT NULL,
+    `spotsAvailable` INT,
 
     PRIMARY KEY (`datetime`, `email`),
     UNIQUE KEY `user_email` (`email`)

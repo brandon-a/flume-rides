@@ -1,58 +1,44 @@
 import React from 'react';
-import NavBar from 'react-bootstrap/Navbar';
 import './NavigationBar.css';
-import { Link } from 'react-router-dom';
-import SignedInLinks from './SignedInLinks';
-import SignedOutLinks from './SignedOutLinks';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import landingpage from './landingpage';
+import about from './about';
+import drive from './drive';
+import ride from './ride';
+import profile from './profile';
+import createaccount from './createaccount';
+import logout from './logout';
+import login from './login';
 
-const navbar = () => {
-    // <header className="navbar">
-    //     <nav className="navbar_tool">
-    //         <div></div>
-    //         <div className="navbar_logo"><a href="#home">Flume Rides</a></div>
-    //         <div className="navbar_items">
-    //             <ul>
-    //             <li><a href="#home">Home</a></li>
-    //                 <li><a href="landingpage.js">About</a></li>
-    //                 <li><a href="#profile">Profile</a></li>
-    //                 <li><a href="#drive">Drive</a></li>
-    //                 <li><a href="#ride">Ride</a></li>
-    //                 <li><a href="#logout">Logout</a></li>
-    //             </ul>
-    //         </div>
-    //     </nav>
-    // </header>
-    return (
-        <nav className="nav-wrapper blue darken-3">
-            <div className="container">
-                <Link to='/' className="brand-logo">Flume Rides</Link>
-                <SignedInLinks />
-                <SignedOutLinks />
+
+const navbar = props => (
+    <header className="navbar">
+        <nav className="navbar_tool">
+            <div className="navbar_logo"><Link to="/">Home</Link></div>
+            <div className="navbar_items">
+                <ul>
+                    <li><Link to={'/about'} className="nav-link">About</Link></li>
+                    <li><Link to={'/drive'} className="nav-link">Drive</Link></li>
+                    <li><Link to={'/ride'} className="nav-link">Ride</Link></li>
+                    <li><Link to={'/profile'} className="nav-link">Profile</Link></li>
+                    <li><Link to={'/createaccount'} className="nav-link">Create Account</Link></li>
+                    <li><Link to={'/login'} className="nav-link">Login</Link></li>
+                    <li><Link to={'/logout'} className="nav-link">Logout</Link></li>
+                </ul>
             </div>
         </nav>
-    )
-}
-/*{
-    return(
-        <>
-    <Navbar bg = "dark" expand="lg">
-        <Navbar.Brand href="#home"> Flume Rides</Navbar.Brand>
-        <Navbar.Toggle aria-controls="bac-navbar-nav"/>
-        <Navbar.Collapse id="basic-navbar-nav">
-            <Nav classname="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.link href="#users">Profile</Nav.link>
-                <Nav.link href="#about">About</Nav.link>
-                <Nav.link href="#drive">Drive</Nav.link>
-                <Nav.link href="#ride">Ride</Nav.link>
-                <Nav.link href="#logout">Logout</Nav.link>
-            </Nav>
-        </Navbar.Collapse>
-    </Navbar>
-    <br />
-</>
-*/
- //   );
-//}
+        <Switch>
+            <Route exact path='/' component={landingpage} />
+            <Route path='/login' component={login} />
+            <Route path='/about' component={about} />
+            <Route path='/drive' component={drive} />
+            <Route path='/ride' component={ride} />
+            <Route path='/profile' component={profile} />
+            <Route path='/createaccount' component={createaccount} />
+            <Route path='/login' component={login} />
+            <Route path='/logout' component={logout} />
+        </Switch>
+    </header>
+)
 
 export default navbar;

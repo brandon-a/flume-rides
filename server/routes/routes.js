@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 module.exports = function(app, connection) {
     app.get('/', (req, res) => {
         connection.query('SELECT * FROM users', function (err, data) {
@@ -34,11 +36,14 @@ module.exports = function(app, connection) {
     })
     
     app.post('/new_user', (req, res) => {
-        console.log('in post');
+        console.log('Creating a new user');
         let name = req.body.user.name;
         let email = req.body.user.email;
         let school = req.body.user.school;
-        let password = req.body.password;
+        let password = req.body.user.password;
+
+        //salt = crypto.randomBytes(16).toString('hex'); 
+        //hash = crypto.pbkdf2Sync(password, salt,   1000, 64, `sha512`).toString(`hex`); 
     
         console.log('name: ' + name + ', email: ' + email);
     
@@ -50,5 +55,27 @@ module.exports = function(app, connection) {
             } 
             console.log('entry added, result was ' + result);
         });
+    });
+
+    app.post('/new_ride', (req, res) => {
+        console.log('Creating a new ride....');
+        //let email = req.body.user.email; Need to figure this out
+        //TODO: Need to actually get the email address of this user
+        let datetime = req.body.ride_entry.datetime;
+        let destination = req.body.ride_entry.destination;
+        let source_location = req.body.ride_entry.source_location;
+        let cost = req.body.ride_entry.cost;
+
+        console.log('datetime: ' + datetime + ', destination: ' + destination);
+        let query = "INSERT INTO `rides` (`email`, `datetime`, `destination`, `source_location`, `toschool`, `cost`, `spotsAvailable`) VALUES ('test@sjsu.edu', '" + datetime + "', '" + destination + "', '" + source_location + "', 1, '" + cost + "', 4);";
+
+        connection.query(query, (err, res) => {
+            if(err){
+                console.log(err);
+            } 
+            console.log('entry added, result was ' + res);
+        });
+
+
     });
 }
