@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Grid, Cell } from 'react-mdl';
+import axios from 'axios';
 
 class CreateAccount extends Component{
+    state = {
+        name: '',
+        email: '',
+        school: '',
+        passsword: ''
+    }
+
     render(){
         return(
             <div className="createaccount-body">
@@ -40,9 +48,25 @@ class CreateAccount extends Component{
                         errors.password =
                             "Password must contain a mininmum of 8 characters, at least one letter, one number, and one special character.";
                         }
+                        this.setState({name: values.firstName + ' ' + values.lastName});
+                        this.setState({email: values.email});
+                        this.setState({school: values.university});
+                        this.setState({password: values.password});
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
+                        const user = {
+                            name: this.state.name,
+                            email: this.state.email,
+                            school: this.state.school,
+                            passsword: this.state.password
+                        };
+                        console.log('INSIDE ONSUBMIT BEFORE POST');
+                        axios.post('/new_user', { user })
+                            .then(res => {
+                                console.log(res);
+                                console.log(res.data);
+                            });
                         setTimeout(() => {
                         alert(JSON.stringify(values, null, 2));
                         setSubmitting(false);
