@@ -19,10 +19,11 @@ class Ride extends Component{
         cost: []
     }
     componentDidMount(){
-        axios.get('/new_ride')
+        axios.get('/get_ride_list')
         .then(res => {
-            const destination = res.data;
-            this.setState({ destination });
+            let destination, source_location = res.data;
+            console.log(destination);
+            this.setState({ destination, source_location });
         })
     }
     //old stuff
@@ -31,12 +32,11 @@ class Ride extends Component{
         if(this.state.activeTab === 0){
             return(
                 <div className="ride-grid">
-                    <GooglePlacesSearch />
-                    <ridecards />
+                    {/* <GooglePlacesSearch /> */}
                     {/* Ride 1 */}
                     <Card shadow={5} style={{minWidth:'450', margin:'auto'}}>
                         <CardTitle style={{color: 'black', height: '176px', background: 'Url(https://vignette.wikia.nocookie.net/webarebears/images/3/37/Ice_bear.png/revision/latest/scale-to-width-down/2000?cb=20160619204008) center / cover'}}>Ride 1</CardTitle>
-                        <CardText>
+                        <CardText> 
                             <List>
                                 <ListItem>Destination:</ListItem>
                                 <ListItem>Departure:</ListItem>
@@ -253,10 +253,8 @@ class Ride extends Component{
 
     
     render(){
-        return(
-            
+        return(           
             <div className="categories">
-                <h1>{ this.state.destinations.map(dest => <li>{dest.destination}</li>)}</h1>
                 <Tabs activeTab={this.state.activeTab} onChange={(tabId) => this.setState({ activeTab: tabId })} ripple>
                     <Tab>From SJSU</Tab>
                     <Tab>To SJSU</Tab>
