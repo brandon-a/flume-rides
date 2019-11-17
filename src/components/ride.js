@@ -3,6 +3,7 @@ import { List, ListItem, Tabs, Tab, Grid, Cell, Card, CardTitle, CardText, CardA
 import { Link } from 'react-router-dom';
 import GooglePlacesSearch from './GooglePlacesSearch';
 import ridecards from './ridecards';
+import axios from 'axios';
 
 
 class Ride extends Component{
@@ -10,6 +11,21 @@ class Ride extends Component{
         super(props);
         this.state ={ activeTab: 0};
     }
+    // New stuff
+    state = {
+        datetime: [],
+        destinations: [],
+        source_location: [],
+        cost: []
+    }
+    componentDidMount(){
+        axios.get('/new_ride')
+        .then(res => {
+            const destination = res.data;
+            this.setState({ destination });
+        })
+    }
+    //old stuff
     toggleCategories(){
         {/* Ride 1 */}
         if(this.state.activeTab === 0){
@@ -27,7 +43,7 @@ class Ride extends Component{
                                 <ListItem>Date:</ListItem>
                                 <ListItem>Time:</ListItem>
                                 <ListItem>Cost</ListItem>
-                                <ListItem>Spots Available: </ListItem>
+                                <ListItem>Spots: </ListItem>
                             </List>
                         </CardText>
                         <CardActions border>
@@ -132,7 +148,7 @@ class Ride extends Component{
                             <IconButton name="share"/>
                         </CardMenu>
                     </Card>
-                    
+
                 </div>
 
             )
@@ -238,7 +254,9 @@ class Ride extends Component{
     
     render(){
         return(
+            
             <div className="categories">
+                <h1>{ this.state.destinations.map(dest => <li>{dest.destination}</li>)}</h1>
                 <Tabs activeTab={this.state.activeTab} onChange={(tabId) => this.setState({ activeTab: tabId })} ripple>
                     <Tab>From SJSU</Tab>
                     <Tab>To SJSU</Tab>
