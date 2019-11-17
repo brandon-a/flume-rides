@@ -9,7 +9,7 @@ class Profile extends Component{
         this.state = {
             name: 'Name Name',
             phone: '(XXX) XXX-XXXX',
-            email: 'BA@gmail.com',
+            email: 'meow@flumerides.com',
             school: 'San José State University',
             major: 'Computer Science',
             car: 'Honda Accord 2016 | White'
@@ -17,20 +17,20 @@ class Profile extends Component{
     }
     
     componentDidMount() {
-
         axios.get('/profile', {
             params: {
                 email: this.state.email
             }
         })
         .then(function (response) {
+            console.log(response.data.users[0]);
             this.setState({
-                name: response.data[0].name,
-                phone: response.data[0].phone,
-                email: response.data[0].email,
-                school: response.data[0].school,
-                major: response.data[0].major,
-                car: response.data[0].car
+                name: response.data.users[0].name,
+                phone: response.data.users[0].phone,
+                email: response.data.users[0].email,
+                school: response.data.users[0].school,
+                major: response.data.users[0].major,
+                car: response.data.users[0].car
             });
           })
           .catch(function (error) {
