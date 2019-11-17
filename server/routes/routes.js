@@ -19,22 +19,24 @@ module.exports = function(app, connection) {
     });
     
     app.get('/profile', (req, res) => {
-        email = req.body.email;
+        email = "BA@gmail.com";
+        console.log(email);
+        let query = "SELECT * FROM Flumes_Rides.users WHERE email = '" + email + "';"
         connection.query(query, (err, result) => {
-            "SELECT name FROM `users` WHERE `email` = '" + email + "';"
             if(err) {
                 console.log(err);
             }
             console.log('successfully queried');
-            const user = {
-                name = result.name,
-                phone = result.phone,
-                email = result.email,
-                school = result.school,
-                major = result.major,
-                car = result.car
-            };
-            res.post(user);
+            console.log(result);
+            // const user = {
+            //     name: result.name,
+            //     phone: result.phone,
+            //     email: result.email,
+            //     school: result.school,
+            //     major: result.major,
+            //     car: result.car
+            // };
+            (err)?res.send(err):res.json({users: result});
         });
 
     })

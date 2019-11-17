@@ -14,19 +14,23 @@ class Profile extends Component{
     
     componentDidMount() {
 
+        console.log(this.state.email);
+        
         axios.get('/profile', {
             params: {
-              email: 'BA@gmail.com'
+                email: this.state.email
             }
-          })
-          .then(function (response) {
+        })
+        .then(function (response) {
             console.log(response);
-            this.setState({name: response.data[0].name});
-            this.setState({name: response.data[0].phone});
-            this.setState({name: response.data[0].email});
-            this.setState({name: response.data[0].school});
-            this.setState({name: response.data[0].major});
-            this.setState({name: response.data[0].car});
+            const result = JSON.parse(response);
+            this.setState({name: result.name});
+            this.setState({phone: result.phone});
+            this.setState({email: result.email});
+            this.setState({school: result.school});
+            this.setState({major: result.major});
+            this.setState({car: result.car});
+            console.log(this.state.name);
           })
           .catch(function (error) {
             console.log(error);
