@@ -7,7 +7,19 @@ module.exports = function(app, connection) {
         });
     });
     
-    app.get('/login_verify', (req, res) => {
+    app.post('/login', 
+        passport.authenticate('local', { failureRedirect: '/login' }),
+        function(req, res) {
+            res.redirect('/');
+     });
+  
+    app.get('/logout',
+        function(req, res){
+            req.logout();
+            res.redirect('/');
+    });
+
+    app.post('/login_verify', (req, res) => {
         email = req.body.email;
         password = req.body.password
     
