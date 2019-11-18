@@ -21,20 +21,9 @@ module.exports = function(app, connection) {
         });
     });   
 */
-    app.get('/get_ride_list', (req, res)=> {
-        //might be let destination = req.query.destination
-        let source_location = req.body.source_location;
-        let destination = req.body.destination;
-        console.log('Getting list of rides given destination: ' + destination + ' and source location: ' + source_location);
-
-        let query = "SELECT * FROM rides WHERE destination = '" + destination  + "' AND source_location = '" + source_location + "');";
-
-        connection.query(query, (err, res) => {
-            if(err) {
-                console.log('Error occurred: ' + err);
-            }
-            res.json({tuples: res});
-            console.log('Query of (' + destination + ", " + source_location + ") succesful.");
+    app.get('/get_ride_list', (req, res) => {
+        connection.query('SELECT * FROM rides', function (err, data) {
+            (err)?res.send(err):res.json({users: data});
         });
     });
     
