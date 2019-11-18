@@ -18,7 +18,22 @@ module.exports = function(app, connection) {
             }
             console.log('successfully queried');
         });
-    });   
+    });
+    
+    app.get('/profile', (req, res) => {
+        let email = req.query.email;
+        console.log(email);
+        let query = "SELECT * FROM Flumes_Rides.users WHERE email = '" + email + "';"
+        connection.query(query, (err, result) => {
+            if(err) {
+                console.log(err);
+            }
+            console.log('successfully queried');
+            console.log(result);
+            (err)?res.send(err):res.json({users: result});
+        });
+
+    })
     
     app.post('/new_user', (req, res) => {
         console.log('Creating a new user');
