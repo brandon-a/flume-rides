@@ -71,7 +71,23 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: false, save
 // session.
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+      res.redirect('/');
+});
+  
+app.get('/logout',
+    function(req, res){
+        req.logout();
+        res.redirect('/');
+});
+
 // end example code base
+
+
 
 app.use(cors());
 

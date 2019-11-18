@@ -6,18 +6,6 @@ module.exports = function(app, connection) {
             (err)?res.send(err):res.json({users: data});
         });
     });
-    
-    app.post('/login', 
-        passport.authenticate('local', { failureRedirect: '/login' }),
-        function(req, res) {
-            res.redirect('/');
-     });
-  
-    app.get('/logout',
-        function(req, res){
-            req.logout();
-            res.redirect('/');
-    });
 
     app.post('/login_verify', (req, res) => {
         email = req.body.email;

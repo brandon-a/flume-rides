@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { Grid, Cell } from 'react-mdl';
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import axios from 'axios';
 
 class Login extends Component{
+    state = {
+        email: '',
+        passsword: ''
+    }
+
     render(){
         return(
             <div className="login-body">
@@ -19,21 +25,22 @@ class Login extends Component{
                                 ) {
                                 errors.email = "Invalid email address";
                                 }
-                                if (!values.password || values.password === "password")
+                                if (!values.password)
                                 errors.password = "Password Required";
-                                else if (
-                                !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(
-                                    values.password
-                                )
-                                ) {
-                                errors.password =
-                                    "Password must contain a mininmum of 8 characters, at least one letter, one number, and one special character.";
-                                }
                                 return errors;
                             }}
                             onSubmit={(values, { setSubmitting }) => {
+                                const user = {
+                                    name: this.state.name,
+                                    passsword: this.state.password
+                                };
+                                axios.post('/login', { user })
+                                    .then(res => {
+                                        console.log(res);
+                                        console.log(res.data);
+                                });
                                 setTimeout(() => {
-                                alert(JSON.stringify(values, null, 2));
+                                //alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
                                 }, 400);
                             }}
