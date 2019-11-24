@@ -22,6 +22,10 @@ class GooglePlacesSearch extends React.Component {
         });
     }
 
+    sendData = () => {
+      this.props.parentCallback(this.state.address);
+    }
+
     componentWillUnmount() {
         this.unloadGoogleMaps();
     }
@@ -56,8 +60,10 @@ class GooglePlacesSearch extends React.Component {
     handleSelect = address => {
         geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
-        .then(latLng => console.log('Success', latLng))
+        .then(latLng => console.log('Success', address))
         .catch(error => console.error('Error', error));
+        this.state.address = address;
+        this.sendData();
     };
  
   render() {
@@ -71,6 +77,7 @@ class GooglePlacesSearch extends React.Component {
                 onChange={this.handleChange}
                 onSelect={this.handleSelect}
             >
+              
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
             <input
@@ -95,14 +102,17 @@ class GooglePlacesSearch extends React.Component {
                       className,
                       style,
                     })}
+                    
                   >
                     <span>{suggestion.description}</span>
                   </div>
+                  
                 );
               })}
             </div>
           </div>
         )}
+      
       </PlacesAutocomplete>
       </div>
     );
