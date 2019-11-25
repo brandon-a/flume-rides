@@ -16,6 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      primaryKey: true,
       validate: {
         isEmail: true
       }
@@ -33,24 +34,31 @@ module.exports = function(sequelize, DataTypes) {
     phone: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: null,
         unique: true
     },
     car: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: null,
         unique: false
     },
     major: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: null,
         unique: false
     }
+  },
+  {
+    timestamps: false
+  
   });
   // Creating a custom method for our User model. 
   //This will check if an unhashed password entered by the 
   //user can be compared to the hashed password stored in our database
-  User.prototype.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+  User.prototype.validPassword = function(passwordHash) {
+    return bcrypt.compareSync(passwordHash, this.passwordHash);
   };
   // Hooks are automatic methods that run during various phases of the User Model lifecycle
   // In this case, before a User is created, we will automatically hash their password
@@ -59,8 +67,8 @@ module.exports = function(sequelize, DataTypes) {
 //     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
 //   });
   User.beforeCreate(user => {
-     user.password = bcrypt.hashSync(
-       user.password,
+     user.passwordHash = bcrypt.hashSync(
+       user.passwordHash,
         bcrypt.genSaltSync(10),
         null
       );

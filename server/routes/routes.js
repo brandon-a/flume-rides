@@ -23,14 +23,16 @@ module.exports = function(app, connection) {
     // otherwise send back an error
     app.post("/api/signup", function(req, res) {
         console.log(req.body);
+        console.log('username: ' + req.body.user.name + 'email: ' + req.body.user.email + ', password hash: ' + req.body.user.password);
         db.user.create({
-        name: req.body.name,
-        email: req.body.email,
-        school: req.body.school,
-        password: req.body.password
+        name: req.body.user.name,
+        email: req.body.user.email,
+        school: req.body.user.school,
+        passwordHash: req.body.user.password
         }).then(function() {
         res.redirect(307, "/api/login");
         }).catch(function(err) {
+        console.log("It's here");
         console.log(err);
         res.json(err);
         // res.status(422).json(err.errors[0].message);

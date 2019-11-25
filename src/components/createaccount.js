@@ -59,7 +59,7 @@ class CreateAccount extends Component{
                             name: this.state.name,
                             email: this.state.email,
                             school: this.state.school,
-                            passsword: this.state.password
+                            password: this.state.password
                         };
                         console.log('INSIDE ONSUBMIT BEFORE POST');
                         axios.post('/api/signup', { user })
