@@ -11,12 +11,29 @@ module.exports = function(app, connection) {
         email = req.body.email;
         password = req.body.password
     
+        let query = "SELECT name FROM `users` WHERE `email` = '" + email +  "', passwordHash = '" + password + "'; ";
+
+
         connection.query(query, (err, result) => {
-            "SELECT name FROM `users` WHERE `email` = '" + email +  "', passwordHash = '" + password + "'; ";
             if(err) {
                 console.log(err);
             }
             console.log('successfully queried');
+        });
+    });
+
+    app.get('/people_in_ride', (req, res) => {
+        // need driver email specifically to get rider emails
+        let email = req.body.driver_email;
+        // need departure time of the ride
+        let datetime = req.body.datetime;
+
+
+        // may or may not need backticks around email
+        let query = "SELECT rider_email FROM `join_ride` WHERE email = '" + email + "' AND '" + datetime + "' ;";  
+
+        connection.query(query, (err, res) => {
+            (err)?res.send(err):res.json({users: res});
         });
     });
     
@@ -49,11 +66,11 @@ module.exports = function(app, connection) {
     
         let query = "INSERT INTO `users` (`name`, `email`, `school`, `passwordHash`) VALUES ('" + name + "', '" + email + "', '" + school + "', '" + password + "');";
     
-        connection.query(query, (err, result) => {
+        connection.query(query, (err, res) => {
             if(err){
                 console.log(err);
             } 
-            console.log('entry added, result was ' + result);
+            console.log('entry added, result was ' + res);
         });
     });
 
