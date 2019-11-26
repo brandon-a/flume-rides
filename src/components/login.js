@@ -34,13 +34,15 @@ class Login extends Component{
                                     name: this.state.name,
                                     passsword: this.state.password
                                 };
-                                axios.post('/api/login', { user })
+                                axios.post('/api/login', { email: this.state.email, password: this.state.passsword })
                                     .then(res => {
                                         console.log(res);
                                         console.log(res.data);
+                                }).then(function(data) {
+                                    window.location.replace(data);
                                 });
                                 setTimeout(() => {
-                                //alert(JSON.stringify(values, null, 2));
+                                alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
                                 }, 400);
                             }}
