@@ -34,11 +34,15 @@ class Login extends Component{
                                     name: this.state.name,
                                     passsword: this.state.password
                                 };
-                                axios.post('/api/login', { email: this.state.email, password: this.state.passsword })
-                                    .then(res => {
+                                console.log("before axios");
+                                axios.post('/api/login', { 
+                                    email: this.state.email, 
+                                    password: this.state.passsword 
+                                }).then(res => {
                                         console.log(res);
-                                        console.log(res.data);
+                                        //console.log(res.data);
                                 }).then(function(data) {
+                                    console.log("should redirect next");
                                     window.location.replace(data);
                                 });
                                 setTimeout(() => {

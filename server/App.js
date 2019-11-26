@@ -19,7 +19,7 @@ app.use(passport.session());
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'MdCd%rX4vn',
+  password: 's4A66#Bu!KRLBA',
   database: 'Flumes_Rides'
 });
 
