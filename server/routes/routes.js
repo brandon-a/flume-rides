@@ -1,4 +1,3 @@
-const crypto = require('crypto');
 var db = require("../models");
 var passport = require("../config/passport");
 
@@ -10,12 +9,11 @@ module.exports = function(app, connection) {
     });
 
 
-    app.post("/api/login", passport.authenticate("local"), function(req, res) {
-        // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
-        // So we're sending the user back the route to the members page because the redirect will happen on the front end
-        // They won't get this or even be able to access this page if they aren't authed
-        res.json("/profile");
-    });
+    app.post('/api/login', passport.authenticate("local", {
+        successRedirect: '/profile',
+        failureRedirect: '/login',
+        failureFlash: true
+    }));
 
         //
     // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -61,18 +59,18 @@ module.exports = function(app, connection) {
         }
     });
 
-    app.post('/login_verify', (req, res) => {
-        email = req.body.email;
-        password = req.body.password
+    // app.post('/login_verify', (req, res) => {
+    //     email = req.body.email;
+    //     password = req.body.password
     
-        connection.query(query, (err, result) => {
-            "SELECT name FROM `users` WHERE `email` = '" + email +  "', passwordHash = '" + password + "'; ";
-            if(err) {
-                console.log(err);
-            }
-            console.log('successfully queried');
-        });
-    });
+    //     connection.query(query, (err, result) => {
+    //         "SELECT name FROM `users` WHERE `email` = '" + email +  "', passwordHash = '" + password + "'; ";
+    //         if(err) {
+    //             console.log(err);
+    //         }
+    //         console.log('successfully queried');
+    //     });
+    // });
     
     app.get('/profile', (req, res) => {
         let email = req.query.email;

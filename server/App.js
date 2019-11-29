@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const flash = require('express-flash');
 const cors = require('cors');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
@@ -11,7 +12,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(flash());
+app.use(session({ secret: "keyboard cat", resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 

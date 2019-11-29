@@ -30,23 +30,13 @@ class Login extends Component{
                                 return errors;
                             }}
                             onSubmit={(values, { setSubmitting }) => {
-                                const user = {
-                                    name: this.state.name,
-                                    passsword: this.state.password
-                                };
                                 console.log("before axios");
                                 axios.post('/api/login', { 
                                     email: this.state.email, 
                                     password: this.state.passsword 
-                                }).then(res => {
-                                        console.log(res);
-                                        //console.log(res.data);
-                                }).then(function(data) {
-                                    console.log("should redirect next");
-                                    window.location.replace(data);
                                 });
                                 setTimeout(() => {
-                                alert(JSON.stringify(values, null, 2));
+                                //alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
                                 }, 400);
                             }}

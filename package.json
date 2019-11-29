@@ -11,6 +11,7 @@
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "express": "^4.17.1",
+    "express-flash": "0.0.2",
     "express-session": "^1.17.0",
     "firebase": "^7.2.1",
     "formik": "^1.5.8",
@@ -34,7 +35,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "nodemon App.js"
+    "serve": "nodemon App.js",
+    "server": "node server/App.js"
   },
   "proxy": "http://localhost:3001",
   "eslintConfig": {
