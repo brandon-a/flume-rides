@@ -9,11 +9,18 @@ module.exports = function(app, connection) {
     });
 
 
-    app.post('/api/login', passport.authenticate("local", {
-        successRedirect: '/profile',
-        failureRedirect: '/login',
-        failureFlash: true
-    }));
+    app.post("/api/login", passport.authenticate("local"), (req, res, next) => {
+        var redir;
+        console.log("LOGIN");
+        console.log(req);
+        if(req.user) {
+            redir = { redirect: "/profile"};
+            return res.json(redir);
+        } else {
+            redir = {redirect: '/login'};
+            return res.json(redir);
+        }
+    });
 
         //
     // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -23,17 +30,17 @@ module.exports = function(app, connection) {
         console.log(req.body);
         console.log('username: ' + req.body.user.name + 'email: ' + req.body.user.email + ', password hash: ' + req.body.user.password);
         db.user.create({
-        name: req.body.user.name,
-        email: req.body.user.email,
-        school: req.body.user.school,
-        passwordHash: req.body.user.password
+            name: req.body.user.name,
+            email: req.body.user.email,
+            school: req.body.user.school,
+            passwordHash: req.body.user.password
         }).then(function() {
-        res.redirect(307, "/api/login");
+            res.redirect(307, "/api/login");
         }).catch(function(err) {
-        console.log("It's here");
-        console.log(err);
-        res.json(err);
-        // res.status(422).json(err.errors[0].message);
+            console.log("It's here");
+            console.log(err);
+            res.json(err);
+            // res.status(422).json(err.errors[0].message);
         });
     });
     //
@@ -53,8 +60,7 @@ module.exports = function(app, connection) {
         // Otherwise send back the user's email and id
         // Sending back a password, even a hashed password, isn't a good idea
         res.json({
-            email: req.user.email,
-            id: req.user.id
+            email: req.user.email
         });
         }
     });

@@ -34,6 +34,17 @@ class Login extends Component{
                                 axios.post('/api/login', { 
                                     email: this.state.email, 
                                     password: this.state.passsword 
+                                }).then(function (response) {
+                                    console.log(response);
+                                    if(response.data.redirect === '/profile') {
+                                        window.location = "/profile"
+                                    } else if (response.data.redirect === 'login'){
+                                        window.location = "/login"
+                                    }
+                                })
+                                .catch(function(error) {
+                                    console.log(error);
+                                    //window.location = "/login"
                                 });
                                 setTimeout(() => {
                                 //alert(JSON.stringify(values, null, 2));
