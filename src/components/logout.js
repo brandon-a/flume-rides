@@ -6,7 +6,7 @@ class Logout extends Component{
         return(
             <div className="logout-body">
                 <Grid className="logout-grid">
-                    <h1>Logout</h1>
+                    <h1 style={{ fontFamily: 'Oxygen'}}>Logout</h1>
                 </Grid>
             </div>
         )

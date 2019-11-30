@@ -21,7 +21,7 @@ class Login extends Component{
             <div className="login-body">
                 <Grid className="login-grid">
                     <Cell col={12}>
-                        <h1>Login</h1>
+                        <h1 style={{ fontFamily: 'Oxygen'}}>Login</h1>
                         <Formik
                             validate={values => {
                                 let errors = {};

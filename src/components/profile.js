@@ -25,31 +25,31 @@ class Profile extends Component{
                         <div className="info-list">
                             <List>
                                 <ListItem>
-                                    <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
+                                    <ListItemContent style={{fontSize: '25px'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
                                         (XXX)XXX-XXXX
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
+                                    <ListItemContent style={{fontSize: '25px'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
                                         meowmeow@flumerides.com
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
+                                    <ListItemContent style={{fontSize: '25px'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
                                         San José State University
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
+                                    <ListItemContent style={{fontSize: '25px'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
                                         Computer Science 
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
+                                    <ListItemContent style={{fontSize: '25px'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
                                         Honda Accord 2016 | White
                                     </ListItemContent>

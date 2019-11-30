@@ -131,7 +131,7 @@ class CreateAccount extends Component{
                     >
                     {({ isSubmitting }) => (
                         <Cell col={12}>
-                            <h1>
+                            <h1 style={{ fontFamily: 'Oxygen'}}>
                                 Welcome to Flume Rides!
                                 <br />
                                 Create an Account
