@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import landingpage from './components/landingpage';
 import about from './components/about';
 import login from './components/login';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends Component {
   render(){

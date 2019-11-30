@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 import { Grid, Cell } from 'react-mdl';
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
+import { Form, Row, Col, Button } from 'react-bootstrap';
+import styled from 'styled-components';
+
+const BUTTON = styled(Button)`
+  background: #1863AB;
+  border: none;
+  font-size: 1.2em;
+  font-weight: 400;
+
+  &:hover {
+    background: #1D3461;
+  }
+`;
 
 class Login extends Component{
     render(){
@@ -40,21 +53,23 @@ class Login extends Component{
                             >
                             {({ isSubmitting }) => (
                                 <Form>
-                                    <div className="input-field">
-                                    <label htmlFor="email">Email </label>
-                                        <Field type="email" name="email" />                           
-                                        <ErrorMessage name="email" component="div" />
-                                    </div>
-                                    <div className="input-field">
-                                        <label htmlFor="password">Password </label>
-                                        <Field type="password" name="password" />
-                                        <ErrorMessage name="password" component="div" />
-                                    </div>
-                                    <div className="input-field">
-                                        <button type="Create" disabled={isSubmitting}>
-                                            Login
-                                        </button>
-                                    </div>
+                                  <Form.Group>
+                                      <Form.Label column sm={2}>Email </Form.Label>
+                                      <Field type="email" name="email" />
+                                      <ErrorMessage name="email" component="div" />
+                                  </Form.Group>
+                                  <Form.Group>
+                                      <Form.Label column sm={2}>Password </Form.Label>
+                                      <Field type="password" name="password" />
+                                      <ErrorMessage name="password" component="div" />
+                                  </Form.Group>
+                                  <Form.Group as={Row}>
+                                    <Col sm={{ span: 10, offset: 2 }}>
+                                    <BUTTON variant="primary" type="Create" disabled={isSubmitting}>
+                                        Login
+                                    </BUTTON>
+                                    </Col>
+                                  </Form.Group>
                                 </Form>
                             )}
                         </Formik>

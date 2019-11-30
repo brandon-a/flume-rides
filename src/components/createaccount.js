@@ -1,7 +1,63 @@
 import React, { Component } from 'react';
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
+import { Form, Col, Button, Row } from 'react-bootstrap';
 import { Grid, Cell } from 'react-mdl';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const CONTAINER = styled.div`
+  background: #bdc3c7;
+  height: auto;
+  width: 90%;
+  margin: 5em auto;
+  color: snow;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+
+  @media(min-width: 786px) {
+    width: 60%;
+  }
+
+  label {
+    color: #24B9B6;
+    font-size: 1.2em;
+    font-weight: 400;
+  }
+
+  h1 {
+    color: #24B9B6;
+    padding-top: .5em;
+  }
+
+  .form-group {
+    margin-bottom: 2.5em;
+  }
+
+  .error {
+    border: 2px solid #FF6565;
+  }
+
+  .error-message {
+    color: #FF6565;
+    padding: .5em .2em;
+    height: 1em;
+    position: absolute;
+    font-size: .8em;
+  }
+`;
+
+
+const BUTTON = styled(Button)`
+  background: #1863AB;
+  border: none;
+  font-size: 1.2em;
+  font-weight: 400;
+
+  &:hover {
+    background: #1D3461;
+  }
+`;
 
 class CreateAccount extends Component{
     state = {
@@ -13,8 +69,8 @@ class CreateAccount extends Component{
 
     render(){
         return(
-            <div className="createaccount-body">
-                <Grid className="createaccount-grid">
+          <div className="createaccount-body">
+            <Grid className="createaccount-grid">
                     <Formik
                     // initialValues={{
                     //     firstName: "First Name",
@@ -81,42 +137,46 @@ class CreateAccount extends Component{
                                 Create an Account
                             </h1>
                         <Form>
-                            <div className="input-field">
-                            <label htmlFor="firstName">First Name </label>
-                                <Field type="firstName" name="firstName" />                           
-                                <ErrorMessage name="firstName" component="div" />
-                            </div>
-                            <div className="input-field">
-                                <label htmlFor="lastName">Last Name </label>
+                            <Form.Group>
+                              <Form.Label column sm={2}>
+                                First Name 
+                              </Form.Label>
+                              <Field type="firstName" name="firstName" />                           
+                              <ErrorMessage name="firstName" component="div" />
+                            </Form.Group>
+                            <Form.Group>
+                              <Form.Label column sm={2}>Last Name </Form.Label>
                                 <Field type="lastName" name="lastName" />
                                 <ErrorMessage name="lastName" component="div" />
-                            </div>
-                            <div className="input-field">
-                                <label htmlFor="university">University </label>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label column sm={2}>University </Form.Label>
                                 <Field type="university" name="university" />                                
                                 <ErrorMessage name="university" component="div" />
-                            </div>
-                            <div className="input-field">
-                                <label htmlFor="email">Email </label>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label column sm={2}>Email </Form.Label>
                                 <Field type="email" name="email" />
                                 <ErrorMessage name="email" component="div" />
-                            </div>
-                            <div className="input-field">
-                                <label htmlFor="password">Password </label>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label column sm={2}>Password </Form.Label>
                                 <Field type="password" name="password" />
                                 <ErrorMessage name="password" component="div" />
-                            </div>
-                            <div className="input-field">
-                                <button type="Login" disabled={isSubmitting}>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                              <Col sm={{ span: 10, offset: 2 }}>
+                                <BUTTON variant="primary" type="Login" disabled={isSubmitting}>
                                     Login
-                                </button>
-                            </div>
+                                </BUTTON>
+                                </Col>
+                            </Form.Group>
                         </Form>
                         </Cell>
                     )}
                     </Formik>
                 </Grid>
-            </div>
+              </div>
         )
     }
 }
