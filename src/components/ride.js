@@ -47,6 +47,9 @@ class Ride extends Component{
                           </Card.Text>
                           <ButtonToolbar>
                           <Button variant="outline-dark">Select</Button>
+                          <DropdownButton variant="outline-primary" id="dropdown-basic-button" title="Driver">
+                                <Dropdown.Item href="#/profile">D1</Dropdown.Item>
+                            </DropdownButton>
                           <DropdownButton variant="outline-dark" id="dropdown-basic-button" title="Passengers">
                                 <Dropdown.Item href="#/profile">P1</Dropdown.Item>
                                 <Dropdown.Item href="#/profile">P2</Dropdown.Item>
@@ -81,6 +84,9 @@ class Ride extends Component{
                             </Card.Text>
                             <ButtonToolbar>
                             <Button variant="outline-primary">Select</Button>
+                            <DropdownButton variant="outline-dark" id="dropdown-basic-button" title="Driver">
+                                <Dropdown.Item href="#/profile">D1</Dropdown.Item>
+                            </DropdownButton>
                             <DropdownButton variant="outline-primary" id="dropdown-basic-button" title="Passengers">
                                 <Dropdown.Item href="#/profile">P1</Dropdown.Item>
                                 <Dropdown.Item href="#/profile">P2</Dropdown.Item>
