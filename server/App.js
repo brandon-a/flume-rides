@@ -40,6 +40,7 @@ app.use(function(req, res, next) {
 });
 
 require('./routes/routes')(app, connection);
+
 db.sequelize.sync().then(function() {
   app.listen(3001, function() {
     console.log("Listening on port 3001");

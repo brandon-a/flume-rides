@@ -27,18 +27,42 @@ class Login extends Component{
                                 }
                                 if (!values.password)
                                 errors.password = "Password Required";
+                               
+                                
+                                this.setState({email: values.email});
+                                this.setState({password: values.password});
+
                                 return errors;
+
                             }}
                             onSubmit={(values, { setSubmitting }) => {
                                 console.log("before axios");
+                                // create account
+                                // const user = {
+                                //     email: this.state.email,
+                                //     password: this.state.password
+                                // };
+                                // console.log('INSIDE ONSUBMIT BEFORE POST');
+                                // axios.post('/api/login', { user })
+                                //     .then(res => {
+                                //         console.log(res);
+                                //     if(res.data.redirect === '/profile') {
+                                //         window.location = "/profile"
+                                //     } else if (res.data.redirect === 'login'){
+                                //         window.location = "/login"
+                                //     }
+                                //     });
+                                // create account
+                                console.log('password on front end: ' + this.state.password)
+            
                                 axios.post('/api/login', { 
                                     email: this.state.email, 
-                                    password: this.state.passsword 
+                                    password: this.state.password 
                                 }).then(function (response) {
-                                    console.log(response);
-                                    if(response.data.redirect === '/profile') {
+                                    console.log('login respond: ' + response);
+                                    if(response.userInfo.redirect === '/profile') {
                                         window.location = "/profile"
-                                    } else if (response.data.redirect === 'login'){
+                                    } else if (response.userInfo.redirect === '/login'){
                                         window.location = "/login"
                                     }
                                 })

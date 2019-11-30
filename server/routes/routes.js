@@ -8,19 +8,48 @@ module.exports = function(app, connection) {
         });
     });
 
-
-    app.post("/api/login", passport.authenticate("local"), (req, res, next) => {
+    
+    app.post("/api/login", passport.authenticate("local"), (req, res) => {
         var redir;
         console.log("LOGIN");
-        console.log(req);
+        //passport.authenticate("local");
+        console.log(req.body);
         if(req.user) {
             redir = { redirect: "/profile"};
-            return res.json(redir);
+            res.json(redir);
         } else {
             redir = {redirect: '/login'};
-            return res.json(redir);
+            res.json(redir);
         }
     });
+
+/*
+    app.post('/api/login', 
+        function(req, res, next) {
+            console.log('routes.js, login, req.body: ');
+            console.log(req.body)
+            next()
+    },
+    passport.authenticate('local'),
+    (req, res) => {
+        console.log('logged in: ', req.user);
+        var userInfo = {
+            username: req.user.username,
+            redirect: '/profile'
+        };
+        res.send(userInfo);
+    }  
+    ) */
+
+
+    //app.post('/login', checkNotAuthenticated, 
+    //passport.authenticate('local', 
+    //{
+    //    successRedirect: '/',
+    //    failureRedirect: '/login',failureFlash: true
+    //})
+    //)
+
 
         //
     // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to

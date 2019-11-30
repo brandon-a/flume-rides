@@ -5,7 +5,7 @@ var bcrypt = require("bcryptjs");
 // Creating our User model
 //Set it as export because we will need it required on the server
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("user", {
+  var User = sequelize.define("User", {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -58,6 +58,7 @@ module.exports = function(sequelize, DataTypes) {
   //This will check if an unhashed password entered by the 
   //user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function(passwordHash) {
+    console.log("validating password");
     return bcrypt.compareSync(passwordHash, this.passwordHash);
   };
   // Hooks are automatic methods that run during various phases of the User Model lifecycle
