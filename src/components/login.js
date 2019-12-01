@@ -37,23 +37,6 @@ class Login extends Component{
                             }}
                             onSubmit={(values, { setSubmitting }) => {
                                 console.log("before axios");
-                                // create account
-                                // const user = {
-                                //     email: this.state.email,
-                                //     password: this.state.password
-                                // };
-                                // console.log('INSIDE ONSUBMIT BEFORE POST');
-                                // axios.post('/api/login', { user })
-                                //     .then(res => {
-                                //         console.log(res);
-                                //     if(res.data.redirect === '/profile') {
-                                //         window.location = "/profile"
-                                //     } else if (res.data.redirect === 'login'){
-                                //         window.location = "/login"
-                                //     }
-                                //     });
-                                // create account
-                       
                                 axios.post('/api/login', { 
                                     email: this.state.email, 
                                     password: this.state.password 

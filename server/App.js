@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
 });
 
 //require('./routes/routes')(app, connection);
-// temp *****************************************************************************************
+// temp code from routes.js *****************************************************************************************
 app.get('/', (req, res) => {
   connection.query('SELECT * FROM users', function (err, data) {
       (err)?res.send(err):res.json({users: data});
@@ -63,34 +63,6 @@ app.post("/api/login", passport.authenticate("local"), (req, res) => {
 });
 
 
-/*
-app.post('/api/login', 
-  function(req, res, next) {
-      console.log('routes.js, login, req.body: ');
-      console.log(req.body)
-      next()
-},
-passport.authenticate('local'),
-(req, res) => {
-  console.log('logged in: ', req.user);
-  var userInfo = {
-      username: req.user.username,
-      redirect: '/profile'
-  };
-  res.send(userInfo);
-}  
-) */
-
-
-//app.post('/login', checkNotAuthenticated, 
-//passport.authenticate('local', 
-//{
-//    successRedirect: '/',
-//    failureRedirect: '/login',failureFlash: true
-//})
-//)
-
-
   //
 // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
 // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
@@ -104,8 +76,11 @@ app.post("/api/signup", function(req, res) {
       school: req.body.user.school,
       passwordHash: req.body.user.password
   }).then(function() {
-      res.redirect(307, "/api/login");
+      var redir = { redirect: "/login"};
+      res.json(redir);
   }).catch(function(err) {
+      var redir = { redirect: "/createaccount"};
+      res.json(redir);
       console.log("It's here");
       console.log(err);
       res.json(err);
@@ -134,18 +109,6 @@ app.get("/api/user_data", function(req, res) {
   }
 });
 
-// app.post('/login_verify', (req, res) => {
-//     email = req.body.email;
-//     password = req.body.password
-
-//     connection.query(query, (err, result) => {
-//         "SELECT name FROM `users` WHERE `email` = '" + email +  "', passwordHash = '" + password + "'; ";
-//         if(err) {
-//             console.log(err);
-//         }
-//         console.log('successfully queried');
-//     });
-// });
 
 app.get('/profile', (req, res) => {
   let email = req.session.passport.user;
@@ -206,11 +169,7 @@ app.post('/new_ride', (req, res) => {
 
 });
 
-// temp *****************************************************************************************
-
-
-
-
+// temp code from routes *****************************************************************************************
 
 db.sequelize.sync().then(function() {
   app.listen(3001, function() {

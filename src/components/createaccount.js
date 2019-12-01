@@ -63,12 +63,15 @@ class CreateAccount extends Component{
                         };
                         console.log('INSIDE ONSUBMIT BEFORE POST');
                         axios.post('/api/signup', { user })
-                            .then(res => {
-                                console.log(res);
-                                console.log(res.data);
+                            .then(function (res) {
+                                if(res.data.redirect === '/login') {
+                                    window.location = "/login"
+                                } else if (res.data.redirect === '/createaccount'){
+                                    window.location = "/createaccount"
+                                }
                             });
                         setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
+                        //alert(JSON.stringify(values, null, 2));
                         setSubmitting(false);
                         }, 400);
                     }}
