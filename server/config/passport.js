@@ -1,6 +1,8 @@
 //we import passport packages required for authentication
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
+
+var db = require("../models");
 // var Sequelize = require('sequelize');
 // var DataTypes = Sequelize.DataTypes;
 
@@ -8,7 +10,6 @@ var LocalStrategy = require("passport-local").Strategy;
 // //
 //https://stackoverflow.com/questions/44248753/ssequelizejs-mysql-and-passportjs-user-findone-not-a-function
 // //We will need the models folder to check passport agains
-var User = require("../models/User");
 //
 // Telling passport we want to use a Local Strategy. In other words,
 //we want login with a username/email and password
@@ -20,8 +21,8 @@ passport.use(new LocalStrategy(
   function(email, password, done) {
     // When a user tries to sign in this code runs
     console.log("authenticating...");
-    console.log(User);
-    User.findOne({
+    console.log(db.User);
+    db.User.findOne({
       where: {
         email: email
       }
