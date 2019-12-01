@@ -10,8 +10,9 @@ class About extends Component{
                             The goal of this application is to allow students to safely ride to and from school amongst their peers.
                             
                         </p>
-                        <p>Three students at San Jose State University wanted to create an application for ride sharing. 
-                            The goal of this application is to allow students to safely ride to and from school amongst their peers.
+                        <p>As a result we created a long-distance rideshare web application that caters specifically to college students. 
+                            The focus is to allow students to commute long distances for low cost with other students. We want you to have
+                            access to a safe alternative to facebook groups which can be hard to navigate and search. 
                             
                         </p>
                         <p>Three students at San Jose State University wanted to create an application for ride sharing. 
