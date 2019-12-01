@@ -21,8 +21,8 @@ passport.use(new LocalStrategy(
   function(email, password, done) {
     // When a user tries to sign in this code runs
     console.log("authenticating...");
-    console.log(db.User);
-    db.User.findOne({
+    console.log(db.user);
+    db.user.findOne({
       where: {
         email: email
       }

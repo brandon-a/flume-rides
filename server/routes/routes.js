@@ -59,7 +59,7 @@ module.exports = function(app, connection) {
     app.post("/api/signup", function(req, res) {
         console.log(req.body);
         console.log('username: ' + req.body.user.name + 'email: ' + req.body.user.email + ', password hash: ' + req.body.user.password);
-        db.User.create({
+        db.user.create({
             name: req.body.user.name,
             email: req.body.user.email,
             school: req.body.user.school,
