@@ -53,16 +53,15 @@ class Login extends Component{
                                 //     }
                                 //     });
                                 // create account
-                                console.log('password on front end: ' + this.state.password)
-            
+                       
                                 axios.post('/api/login', { 
                                     email: this.state.email, 
                                     password: this.state.password 
                                 }).then(function (response) {
-                                    console.log('login respond: ' + response);
-                                    if(response.userInfo.redirect === '/profile') {
+                                    console.log('login respond: ' + response.data.redirect);
+                                    if(response.data.redirect === '/profile') {
                                         window.location = "/profile"
-                                    } else if (response.userInfo.redirect === '/login'){
+                                    } else if (response.data.redirect === '/login'){
                                         window.location = "/login"
                                     }
                                 })
