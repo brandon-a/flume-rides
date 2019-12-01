@@ -18,11 +18,7 @@ class Profile extends Component{
     
     componentDidMount() {
         var self = this;
-        axios.get('/profile', { 
-            params: {
-                email: 'BA@gmail.com'
-            }
-        })
+        axios.get('/profile')
         .then(function (response) {
             self.setState({
                 name: response.data.users[0].name,
