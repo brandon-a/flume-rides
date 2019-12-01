@@ -1,5 +1,5 @@
 var db = require("../models");
-var passport = require("../config/passport");
+var passport = require("../config/passport-auth");
 
 module.exports = function(app, connection) {
     app.get('/', (req, res) => {
@@ -9,7 +9,7 @@ module.exports = function(app, connection) {
     });
 
     
-    app.post("/api/login", passport.authenticate("local"), (req, res) => {
+    /*app.post("/api/login", passport.authenticate("local"), (req, res) => {
         var redir;
         console.log("LOGIN");
         //passport.authenticate("local");
@@ -21,7 +21,7 @@ module.exports = function(app, connection) {
             redir = {redirect: '/login'};
             res.json(redir);
         }
-    });
+    });*/
 
 /*
     app.post('/api/login', 
@@ -55,7 +55,7 @@ module.exports = function(app, connection) {
     // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
     // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
     // otherwise send back an error
-    app.post("/api/signup", function(req, res) {
+    /*app.post("/api/signup", function(req, res) {
         console.log(req.body);
         console.log('username: ' + req.body.user.name + 'email: ' + req.body.user.email + ', password hash: ' + req.body.user.password);
         db.user.create({
@@ -71,7 +71,43 @@ module.exports = function(app, connection) {
             res.json(err);
             // res.status(422).json(err.errors[0].message);
         });
-    });
+    });*/
+
+    app.post('/api/signup', (req, res, next) => {
+        passport.authenticate('register', (err, user, info) => {
+            if (err) {
+                console.log('ERROR HAS OCCURRED: ' + err);
+            }
+            if (info != undefined) {
+                console.log('PRINTING FROM INFO: ' + info.message);
+                res.send(info.message);
+            } else {
+                req.logIn(user, err => {
+                    const data = {
+                        name: req.body.user.name,
+                        email: req.body.user.email,
+                        school: req.body.user.school,
+                        passwordhash: req.body.user.password,
+                    };
+                user.findOne({
+                    where: {
+                        username: data.username,
+                    },
+                }).then(user => {
+                    user
+                        .update({
+                            name: data.name,
+                            email: data.email,
+                        })
+                        .then(() => {
+                            console.log('user created in database');
+                            res.status(200).send({message: 'user created' });
+                            });
+                        });
+                    });
+                }
+            })(req, res, next);
+        });
     //
     // Route for logging user out
     app.get("/logout", function(req, res) {

@@ -4,7 +4,7 @@ const flash = require('express-flash');
 const cors = require('cors');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const passport = require('./config/passport');
+const passport = require('./config/passport-auth');
 
 const db = require('./models');
 
@@ -21,8 +21,8 @@ app.use(passport.session());
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 's4A66#Bu!KRLBA',
-  database: 'Flumes_Rides'
+  password: 'root',
+  database: 'flumes_rides_test'
 });
 
 connection.connect(err => {
@@ -40,6 +40,8 @@ app.use(function(req, res, next) {
 });
 
 require('./routes/routes')(app, connection);
+
+var routes = require('./routes/routes')(passport);
 
 db.sequelize.sync().then(function() {
   app.listen(3001, function() {
