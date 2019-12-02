@@ -7,9 +7,8 @@ import GooglePlacesSearch from './GooglePlacesSearch';
 class Drive extends Component{
     state = {
         datetime: '',
-        school: '',
         otherLocation: '',
-        // TODO: toSchool: ,
+        toSchool: 0,
         cost: '',
         google_destination: ''
     }
@@ -29,10 +28,10 @@ class Drive extends Component{
                         <Formik
                             validate={values => {
                                 let errors = {};
-                                if (!values.otherLocation || values.otherLocation === "otherLocation")
-                                errors.otherLocation = "Destination Required";
-                                if (!values.school || values.school === "School")
-                                errors.school = "Departure Required";
+                                //if (!values.otherLocation || values.otherLocation === "otherLocation")
+                                //errors.otherLocation = "Destination Required";
+                                //if (!values.school || values.school === "School")
+                                //errors.school = "Departure Required";
                                 if (!values.cost || values.cost === "cost")
                                 errors.cost = "Cost Required";
                                 if (!values.time || values.time === "time")
@@ -54,10 +53,10 @@ class Drive extends Component{
                                 //TODO: ADD BOOLEAN FOR SCHOOL
                                 //valid datetime = 2010-04-30 07:27:39
                                 this.setState({datetime: values.date + ' ' + values.time + ':00'});
-                                this.setState({otherLocation: values.otherLocation});
-                                this.setState({school: values.school});
+                                //this.setState({otherLocation: values.otherLocation});
+                                //this.setState({school: values.school});
                                 this.setState({cost: values.cost});
-                                //this.setState({schoolBool: values.schoolBool});
+                                this.setState({schoolBool: values.toFrom});
 
                                 // else if (
                                 //     !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(
@@ -71,12 +70,13 @@ class Drive extends Component{
 
                             }}
                             onSubmit={(values, { setSubmitting }) => {
+                                console.log('creating ride_entry in drive.js....');
                                 const ride_entry = {
                                     datetime: this.state.datetime,
-                                    otherLocationn: this.state.otherLocation,
-                                    school: this.state.school,
-                                    cost: this.state.cost
-                                    //schoolBool: this.state.schoolBool
+                                    otherLocation: this.state.google_destination,
+                                    //school: this.state.school,
+                                    cost: this.state.cost,
+                                    schoolBool: this.state.schoolBool
                                 };
                                 console.log('INSIDE ONSUBMIT BEFORE POST');
                                 axios.post('/new_ride', { ride_entry })
