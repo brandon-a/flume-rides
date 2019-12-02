@@ -2,29 +2,43 @@
   background: #373B44;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  position: flex;
 }
 
 .landing-body {
-  margin: auto;
-  background: #bdc3c7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  padding-top: 2em;
+    margin: auto;
+ 
+    justify-content: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    /* position: flex; */
+    width: 100%;
+    /* height: 100%; */
+
 }
 
- /* Profile Page */
+ /* Landing Page */
+ .landing-grid h1 {
+  font-family: 'Oxygen', sans-serif;
+  text-align: center;
+}
+
+ /* Landing Page */
+ .landing-grid p {
+  /* font-family: 'Times New Roman', Times, serif; */
+  text-align: center;
+  font-size: 17px;
+}
+
+ /* Landing Page */
  .landing-grid {
   text-align: center;
   justify-content: center;
   width: 80%;
-  height: 550px;
-  background: white;
+  height: auto;
+  background: linear-gradient(to right, #f1f2f5, #fafaff);
   color: black;
-  border: 2px solid blue;
+  border: 1px solid black;
   margin-bottom: 20 px;
 
 }
@@ -82,12 +96,9 @@
  /* Profile Page */
 .profile-body {
   margin: auto;
-  background: #bdc3c7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  position: fixed;
+
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   justify-content: center;
   padding-top: 2em;
 }
@@ -97,23 +108,25 @@
   text-align: center;
   justify-content: center;
   width: 80%;
-  height: 550px;
+  height: auto;
   background: white;
   color: black;
-  border: 2px solid blue;
+  border: 1px solid blue;
   margin-bottom: 20 px;
 
 }
 
  /* Profile Page */
 .profile-grid h2 {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Oxygen', sans-serif;
 }
 
  /* Profile Page */
 .profile-grid p {
-  font-family: 'Oxygen', sans-serif;
-  font-weight: bold;
+  /* font-family: 'Oxygen', sans-serif; */
+  /* font-weight: bold; */
+  font-size: 17px;
+  text-align: left;
 }
 
  /* Profile Page */
@@ -134,22 +147,18 @@
   text-align: center;
   justify-content: center;
   width: 80%;
-  height: 550px;
-  background: white;
+  height: auto;
+  background: linear-gradient(to right, #f1f2f5, #fafaff);
   color: black;
-  border: 2px solid blue;
+  border: 1px solid blue;
   margin-bottom: 20 px;
 }
 
 /* Create Account Page */
 .createaccount-body {
-  margin: auto;
-  background: #bdc3c7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  position: fixed;
+
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   justify-content: center;
   padding-top: 2em;
 }
@@ -169,25 +178,26 @@
 /* Login Page */
 .login-body {
   margin: auto;
-  background: #bdc3c7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  position: fixed;
+ 
+  /* position: fixed; */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   justify-content: center;
   padding-top: 2em;
 }
 
+#inputField{
+  text-align: center
+}
  /* Login Page */
  .login-grid {
   text-align: center;
   justify-content: center;
   width: 80%;
-  height: 550px;
-  background: white;
+  height: auto;
+  background: linear-gradient(to right, #f1f2f5, #fafaff);
   color: black;
-  border: 2px solid blue;
+  border: 1px solid blue;
   margin-bottom: 20 px;
 
 }
@@ -201,9 +211,9 @@
   background: #bdc3c7;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   justify-content: center;
   padding-top: 2em;
 }
@@ -213,10 +223,10 @@
   text-align: center;
   justify-content: center;
   width: 80%;
-  height: 550px;
-  background: white;
+  height: auto;
+  background: linear-gradient(to right, #f1f2f5, #fafaff);
   color: black;
-  border: 2px solid blue;
+  border: 1px solid blue;
   margin-bottom: 20 px;
 
 }
@@ -224,12 +234,9 @@
 /* Home Page */
 .home-body {
   margin: auto;
-  background: #bdc3c7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  position: fixed;
+
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   justify-content: center;
   padding-top: 2em;
 }
@@ -239,8 +246,8 @@
   text-align: center;
   justify-content: center;
   width: 80%;
-  height: 550px;
-  /*background: white;*/
+  height: auto;
+  background: linear-gradient(to right, #f1f2f5, #fafaff);
   color: black;
   /*border: 2px solid blue;*/
   margin-bottom: 20 px;
@@ -272,9 +279,7 @@
 
 .about-body {
   margin: auto;
-  background: #bdc3c7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
   justify-content: center;
   padding-top: 2em;
   padding-bottom: 2em;
@@ -284,13 +289,38 @@
  */
 }
 
- /* Profile Page */
- .about-grid {
+ /* About Page */
+ .about-grid h1 {
+  font-family: 'Oxygen', sans-serif;
   text-align: center;
+}
+
+ /* About Page */
+ .about-grid h2 {
+  font-family: 'Oxygen', sans-serif;
+  text-align: center;
+}
+
+ /* About Page */
+ .about-grid h3 {
+  font-family: 'Oxygen', sans-serif;
+  text-align: left;
+}
+
+ /* About Page */
+ .about-grid p {
+  text-align: left;
+  /* font-family: 'Times New Roman', Times, serif; */
+  font-size: 17px;
+}
+
+ /* about Page */
+ .about-grid {
+  /* text-align: center; */
   justify-content: center;
   width: 80%;
   height: auto;
-  background: white;
+  background: linear-gradient(to right, #f1f2f5, #fafaff);
   color: black;
   border: 1px solid black;
   margin-bottom: 20 px;
@@ -300,25 +330,22 @@
  /* Drive Page */
 .drive-body {
   margin: auto;
-  background: #bdc3c7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  position: fixed;
+ 
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   justify-content: center;
   padding-top: 2em;
 }
 
  /* Drive Page */
  .drive-grid {
-  text-align: left;
+  text-align: center;
   justify-content: center;
   width: 80%;
-  height: 550px;
-  background: white;
+  height: auto;
+  background: linear-gradient(to right, #f1f2f5, #fafaff);
   color: black;
-  border: 2px solid blue;
+  border: 1px solid blue;
   margin-bottom: 20 px;
 
 }
@@ -331,12 +358,8 @@
  /* Logout Page */
  .logout-body {
   margin: auto;
-  background: #bdc3c7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  position: fixed;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   justify-content: center;
   padding-top: 2em;
 }
@@ -346,10 +369,10 @@
   text-align: center;
   justify-content: center;
   width: 80%;
-  height: 550px;
-  background: white;
+  height: auto;
+  background: linear-gradient(to right, #f1f2f5, #fafaff);
   color: black;
-  border: 2px solid blue;
+  border: 1px solid blue;
   margin-bottom: 20 px;
 
 }

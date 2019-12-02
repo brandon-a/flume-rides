@@ -60,31 +60,31 @@ class Profile extends Component{
                         <div className="info-list">
                             <List>
                                 <ListItem>
-                                    <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
+                                    <ListItemContent style={{fontSize: '25px'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
                                         { this.state.phone }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
+                                    <ListItemContent style={{fontSize: '25px'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
                                         { this.state.email }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
+                                    <ListItemContent style={{fontSize: '25px'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
                                         { this.state.school }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
+                                    <ListItemContent style={{fontSize: '25px'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
                                         { this.state.major }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
+                                    <ListItemContent style={{fontSize: '25px'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
                                         { this.state.car }
                                     </ListItemContent>

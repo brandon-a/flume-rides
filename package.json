@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.7.0",
     "axios": "^0.19.0",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
@@ -21,12 +22,14 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react": "^16.9.0",
-    "react-bootstrap": "^1.0.0-beta.12",
+    "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.9.0",
     "react-mdl": "^1.11.0",
     "react-places-autocomplete": "^7.2.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.2",
+    "styled-components": "^4.4.1",
+    "yup": "^0.27.0"
     "sequelize": "^5.21.2",
     "sequelize-cli": "^5.5.1"
   },

@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import { Grid, Cell } from 'react-mdl';
 import axios from 'axios';
 import GooglePlacesSearch from './GooglePlacesSearch';
+import styled from 'styled-components';
+import { Form, Col, Button, Row } from 'react-bootstrap';
+
+const BUTTON = styled(Button)`
+  background: #1863AB;
+  border: none;
+  font-size: 1.2em;
+  font-weight: 400;
+
+  &:hover {
+    background: #1D3461;
+  }
+`;
 
 class Drive extends Component{
     state = {
@@ -17,7 +30,7 @@ class Drive extends Component{
             <div className="drive-body">
                 <Grid className="drive-grid">
                     <Cell col={12}>
-                        <h1>
+                        <h1 style={{ fontFamily: 'Oxygen'}}>
                             Create a Ride
                         </h1>
                         <Formik
@@ -76,37 +89,51 @@ class Drive extends Component{
                             {({ isSubmitting }) => (
                                 <Cell col={12}>
                                 <Form>
-                                <GooglePlacesSearch /> 
-                                    <div className="input-field">
-                                    <label htmlFor="destination">Destination </label>
+                                    <Form.Group>
+                                        <GooglePlacesSearch /> 
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label column sm={2}>
+                                            Destination
+                                        </Form.Label>
                                         <Field type="destination" name="destination" />                           
                                         <ErrorMessage name="destination" component="div" />
-                                    </div>
-                                    <div className="input-field">
-                                        <label htmlFor="departure">Departure </label>
+                                    </Form.Group>                                    
+                                    <Form.Group>
+                                        <Form.Label column sm={2}>
+                                            Departure 
+                                        </Form.Label>
                                         <Field type="departure" name="departure" />
                                         <ErrorMessage name="departure" component="div" />
-                                    </div>
-                                    <div className="input-field">
-                                        <label htmlFor="cost">Cost </label>
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label column sm={2}>
+                                            Cost 
+                                        </Form.Label>
                                         <Field type="cost" name="cost" />                                
                                         <ErrorMessage name="cost" component="div" />
-                                    </div>
-                                    <div className="input-field">
-                                        <label htmlFor="time">Time </label>
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label column sm={2}>
+                                            Time 
+                                        </Form.Label>
                                         <Field type="time" name="time" />
                                         <ErrorMessage name="time" component="div" />
-                                    </div>
-                                    <div className="input-field">
-                                        <label htmlFor="date">Date </label>
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label column sm={2}>
+                                            Date 
+                                        </Form.Label>
                                         <Field type="date" name="date" />
                                         <ErrorMessage name="date" component="div" />
-                                    </div>
-                                    <div className="input-field">
-                                        <button type="Create" disabled={isSubmitting}>
-                                            Create
-                                        </button>
-                                    </div>
+                                    </Form.Group>
+                                    <Form.Group as={Row}>
+                                        <Col sm={{ span: 10, offset: 2 }}>
+                                            <BUTTON ariant="primary" type="Create" disabled={isSubmitting}>
+                                                Create
+                                            </BUTTON>
+                                        </Col>
+                                    </Form.Group>
                                 </Form>
                                 </Cell>
                             )}
