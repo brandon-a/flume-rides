@@ -59,16 +59,19 @@ class CreateAccount extends Component{
                             name: this.state.name,
                             email: this.state.email,
                             school: this.state.school,
-                            passsword: this.state.password
+                            password: this.state.password
                         };
                         console.log('INSIDE ONSUBMIT BEFORE POST');
-                        axios.post('/new_user', { user })
-                            .then(res => {
-                                console.log(res);
-                                console.log(res.data);
+                        axios.post('/api/signup', { user })
+                            .then(function (res) {
+                                if(res.data.redirect === '/login') {
+                                    window.location = "/login"
+                                } else if (res.data.redirect === '/createaccount'){
+                                    window.location = "/createaccount"
+                                }
                             });
                         setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
+                        //alert(JSON.stringify(values, null, 2));
                         setSubmitting(false);
                         }, 400);
                     }}
