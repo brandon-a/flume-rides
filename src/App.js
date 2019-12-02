@@ -3,6 +3,7 @@ import Navigationbar from './components/NavigationBar';
 import './App.css';
 import {Layout, Header, Navigation, Drawer, Content} from 'react-mdl';
 import Main from './components/main';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import landingpage from './components/landingpage';
 import about from './components/about';

@@ -8,6 +8,7 @@ module.exports = function(app, connection) {
         });
     });
 
+
     
     app.post("/api/login", passport.authenticate("local"), (req, res) => {
         var redir;
@@ -107,6 +108,7 @@ module.exports = function(app, connection) {
     //         console.log('successfully queried');
     //     });
     // });
+
     
     app.get('/profile', (req, res) => {
         let email = req.session.name;
@@ -122,6 +124,13 @@ module.exports = function(app, connection) {
         });
 
     })
+
+    app.get('/get_ride_list', (req, res) => {
+        connection.query('SELECT * FROM rides', function (err, data) {
+            (err)?res.send(err):res.json({users: data});
+        });
+    });
+
     
     app.post('/new_user', (req, res) => {
         console.log('Creating a new user');
