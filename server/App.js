@@ -90,13 +90,14 @@ app.post("/api/signup", function(req, res) {
 //
 // Route for logging user out
 app.get("/logout", function(req, res) {
-  req.logout();
-  res.redirect("/");
+  req.session.destroy();
+  var redir = { redirect: "/" };
+  res.json(redir);
 });
 //
 // Route for getting some data about our user to be used client side
 app.get("/api/user_data", function(req, res) {
-  if (!req.user) {
+  if (!req.session.passport) {
   // The user is not logged in, send back an empty object
   res.json({});
   }
@@ -104,7 +105,7 @@ app.get("/api/user_data", function(req, res) {
   // Otherwise send back the user's email and id
   // Sending back a password, even a hashed password, isn't a good idea
   res.json({
-      email: req.user.email
+      email: req.session.passport.user
   });
   }
 });

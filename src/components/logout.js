@@ -10,6 +10,7 @@ class Logout extends Component{
                 </Grid>
             </div>
         )
+        
     }
 }
 export default Logout;
