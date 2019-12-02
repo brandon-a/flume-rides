@@ -1,13 +1,48 @@
 import React, { Component } from 'react';
 import { Grid, Cell, List, ListItem, ListItemContent } from 'react-mdl';
+import axios from 'axios';
 
 class Profile extends Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            name: 'Name Name',
+            phone: '(XXX) XXX-XXXX',
+            email: 'meow@flumerides.com',
+            school: 'San José State University',
+            major: 'Computer Science',
+            car: 'Honda Accord 2016 | White'
+        };
+    }
+    
+    componentDidMount() {
+        var self = this;
+        axios.get('/profile')
+        .then(function (response) {
+            self.setState({
+                name: response.data.users[0].name,
+                phone: response.data.users[0].phone,
+                email: response.data.users[0].email,
+                school: response.data.users[0].school,
+                major: response.data.users[0].major,
+                car: response.data.users[0].car
+            });
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });  
+    }
+
     render(){
         return(
             <div className="profile-body">
                 <Grid className="profile-grid">
                     <Cell col={6}>
-                        <h2>Name</h2>
+                        <h2>{ this.state.name }</h2>
                         <img 
                             src="https://p7.hiclipart.com/preview/411/606/476/giant-panda-polar-bear-stirfry-stunts-we-bare-bears-grizzly-bear-polar-bear.jpg"
                             alt="avatar"
@@ -27,31 +62,31 @@ class Profile extends Component{
                                 <ListItem>
                                     <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
-                                        (XXX)XXX-XXXX
+                                        { this.state.phone }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
-                                        meowmeow@flumerides.com
+                                        { this.state.email }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
-                                        San José State University
+                                        { this.state.school }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
-                                        Computer Science 
+                                        { this.state.major }
                                     </ListItemContent>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemContent style={{fontSize: '25px', fontFamily: 'Oxygen'}}>
                                         <i className="fas fa-phone-square" aria-hidden="true"/>
-                                        Honda Accord 2016 | White
+                                        { this.state.car }
                                     </ListItemContent>
                                 </ListItem>
                             </List>
