@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS `join_ride`;
 DROP TABLE IF EXISTS `join`;
 
+
 CREATE TABLE `join_ride` (
     `email` VARCHAR(50) NOT NULL,
     `datetime` DATETIME NOT NULL,
