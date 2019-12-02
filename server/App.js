@@ -99,7 +99,7 @@ app.post("/logout", function(req, res) {
 });
 //
 // Route for getting some data about our user to be used client side
-app.get("/api/user_data", function(req, res) {
+app.get("/api/user_data", function(req, result) {
   if (!req.session.passport) {
   // The user is not logged in, send back an empty object
   res.json({});
@@ -119,11 +119,11 @@ app.get('/display_rides', (req, res) => {
   
   let query = "SELECT * FROM rides;"
   
-  connection.query(query, (err, res) => {
+  connection.query(query, (err, result) => {
     if(err) {
         console.log(err);
     }
-    (err)?res.send(err):res.json({rides: res});
+    (err)?res.send(err):res.json({rides: result});
   });
 });
 
@@ -153,18 +153,16 @@ app.get('/matching_rides', (req, res) => {
   }
   
 
-  connection.query(query, (err, res) => {
+  connection.query(query, (err, result) => {
     if(err) {
         console.log(err);
     }
     console.log('successfully queried destination of user');
     console.log(res);
-    (err)?res.send(err):res.json({rides: res});
+    (err)?res.send(err):res.json({rides: result});
   });
 });
   
-
-
 app.get('/profile', (req, res) => {
   let email = req.session.passport.user;
   console.log(email);
@@ -203,20 +201,64 @@ app.post('/new_user', (req, res) => {
 });
 
 app.get('/people_in_ride', (req, res) => {
-    // need driver email specifically to get rider emails
-    let email = req.body.driver_email;
+    let email = req.session.passport.user;
     // need departure time of the ride
     let datetime = req.body.datetime;
 
-
-    // may or may not need backticks around email
     let query = "SELECT rider_email FROM `join_ride` WHERE email = '" + email + "' AND '" + datetime + "' ;";  
 
-    connection.query(query, (err, res) => {
-        (err)?res.send(err):res.json({users: res});
+    connection.query(query, (err, result) => {
+        (console.log("failure in /people_in_ride"))?res.send(err):res.json({users: result});
     });
 });
 
+app.post('/join_ride', (req, res) => {
+  let email = req.session.passport.user;
+  let other_email = req.body.user.email;
+  let timestamp = req.body.user.timestamp;
+
+  let query = "INSERT INTO `join_ride` (`email`, `datetime`, `rider_email`) VALUES ('" + other_email + "', '" + timestamp + "', '" + email + "');";
+
+  connection.query(query, (err, result) => {
+    (err)?res.send(err):res.json({rides: result});
+  });
+});
+
+app.get('/current_rides', (req, res) => {
+  let email = req.session.passport.user;
+  let today = new Date();
+  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  let dateTime = date+' '+time;
+
+  let query = "SELECT * FROM rides WHERE email = '" + email + " AND NOW() <= '" + dateTime  + "';";
+
+  connection.query(query, (err, result) => {
+    (err)?res.send(err):res.json({rides: result});
+  });
+});
+
+app.get('/past_rides', (req, res) => {
+  let email = req.session.passport.user;
+
+  let dateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  // lets gooooo
+  // if it doesn't work I'll neck
+  console.log("datetime in /past_rides" + dateTime);
+
+  let query = "SELECT * FROM rides WHERE email = '" + email + "' AND NOW() > '" + dateTime  + "';";
+  // SELECT * FROM rides WHERE email = 'BA@gmail.com' AND NOW() > '2019-11-04 04:18:39';
+  //                                                                2019-12-2 0:26:56
+
+  connection.query(query, (err, result) => {
+      if(err){
+          console.log(err);
+      }
+      console.log('successfully queried user profile');
+      console.log(result);
+    (console.log("error in /past_rides, result is : " + result))?res.send(err):res.json({rides: result});
+  });
+});
 
 app.post('/new_ride', (req, res) => {
   console.log('Creating a new ride....');
@@ -226,13 +268,13 @@ app.post('/new_ride', (req, res) => {
 
   let school = "";
 
-  let school_query = "SELECT school FROM users WHERE email = '" + email + "';"
+  let school_query = "SELECT school FROM users WHERE email = '" + email + "';";
 
-  connection.query(school_query, (err, res) => {
+  connection.query(school_query, (err, result) => {
     if(err) {
         console.log(err);
     }
-    school = res;
+    school = result;
   });
 
   let datetime = req.body.ride_entry.datetime;
@@ -241,13 +283,13 @@ app.post('/new_ride', (req, res) => {
   let cost = req.body.ride_entry.cost;
 
   console.log('QUERYING RIDE TABLE TO ADD THIS RIDE');
-  let query = "INSERT INTO `rides` (`email`, `datetime`, `otherLocation`, `school`, `toschool`, `cost`, `spotsAvailable`) VALUES ('" + email + "', "  + datetime + "', '" + otherLocation + "', '" + source_location + "', 1, '" + cost + "', 3);";
+  let query = "INSERT INTO `rides` (`email`, `datetime`, `otherLocation`, `school`, `toschool`, `cost`, `spotsAvailable`) VALUES ('" + email + "', "  + datetime + "', '" + otherLocation + "', '" + school + "', '" + toSchool + "', " + cost + "', 3);";
 
-  connection.query(query, (err, res) => {
+  connection.query(query, (err, result) => {
       if(err){
           console.log(err);
       } 
-      console.log('entry added, result was ' + res);
+      console.log('entry added, result was ' + result);
   });
 
 

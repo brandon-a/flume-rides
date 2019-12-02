@@ -9,6 +9,8 @@ import profile from './profile';
 import createaccount from './createaccount';
 import logout from './logout';
 import login from './login';
+import pastRides from './pastRides';
+import currentRides from './currentRides';
 
 
 const navbar = props => (
@@ -20,6 +22,8 @@ const navbar = props => (
                     <li><Link to={'/about'} className="nav-link">About</Link></li>
                     <li><Link to={'/drive'} className="nav-link">Drive</Link></li>
                     <li><Link to={'/ride'} className="nav-link">Ride</Link></li>
+                    <li><Link to={'/pastRides'} className="nav-link">Past Rides</Link></li>
+                    <li><Link to={'/currentRides'} className="nav-link">Current Rides</Link></li>
                     <li><Link to={'/profile'} className="nav-link">Profile</Link></li>
                     <li><Link to={'/createaccount'} className="nav-link">Create Account</Link></li>
                     <li><Link to={'/login'} className="nav-link">Login</Link></li>
@@ -37,6 +41,8 @@ const navbar = props => (
             <Route path='/createaccount' component={createaccount} />
             <Route path='/login' component={login} />
             <Route path='/logout' component={logout} />
+            <Route path='/pastRides' component={pastRides} />
+            <Route path='/currentRides' component={currentRides} />
         </Switch>
     </header>
 )
