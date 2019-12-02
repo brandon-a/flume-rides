@@ -9,8 +9,13 @@ class Drive extends Component{
         datetime: '',
         destination: '',
         source_location: '',
-        cost: ''
+        cost: '',
+        google_destination: ''
     }
+
+    callback_for_state = (component_data) => {
+        this.setState({google_destination : component_data});
+    };
 
     render(){
         return(
@@ -76,7 +81,7 @@ class Drive extends Component{
                             {({ isSubmitting }) => (
                                 <Cell col={12}>
                                 <Form>
-                                <GooglePlacesSearch /> 
+                                <GooglePlacesSearch parentCallback = {this.callback_for_state}/> 
                                     <div className="input-field">
                                     <label htmlFor="destination">Destination </label>
                                         <Field type="destination" name="destination" />                           
