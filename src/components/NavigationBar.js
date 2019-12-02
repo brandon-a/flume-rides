@@ -22,8 +22,6 @@ const navbar = props => (
                     <li><Link to={'/about'} className="nav-link">About</Link></li>
                     <li><Link to={'/drive'} className="nav-link">Drive</Link></li>
                     <li><Link to={'/ride'} className="nav-link">Ride</Link></li>
-                    <li><Link to={'/pastRides'} className="nav-link">Past Rides</Link></li>
-                    <li><Link to={'/currentRides'} className="nav-link">Current Rides</Link></li>
                     <li><Link to={'/profile'} className="nav-link">Profile</Link></li>
                     <li><Link to={'/createaccount'} className="nav-link">Create Account</Link></li>
                     <li><Link to={'/login'} className="nav-link">Login</Link></li>
