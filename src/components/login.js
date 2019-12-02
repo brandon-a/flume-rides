@@ -3,6 +3,7 @@ import { Grid, Cell } from 'react-mdl';
 import { Formik, Field, ErrorMessage } from "formik";
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const BUTTON = styled(Button)`
   background: #1863AB;
@@ -16,6 +17,11 @@ const BUTTON = styled(Button)`
 `;
 
 class Login extends Component{
+    state = {
+        email: '',
+        passsword: ''
+    }
+
     render(){
         return(
             <div className="login-body">
@@ -32,21 +38,35 @@ class Login extends Component{
                                 ) {
                                 errors.email = "Invalid email address";
                                 }
-                                if (!values.password || values.password === "password")
+                                if (!values.password)
                                 errors.password = "Password Required";
-                                else if (
-                                !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(
-                                    values.password
-                                )
-                                ) {
-                                errors.password =
-                                    "Password must contain a mininmum of 8 characters, at least one letter, one number, and one special character.";
-                                }
+                               
+                                
+                                this.setState({email: values.email});
+                                this.setState({password: values.password});
+
                                 return errors;
+
                             }}
                             onSubmit={(values, { setSubmitting }) => {
+                                console.log("before axios");
+                                axios.post('/api/login', { 
+                                    email: this.state.email, 
+                                    password: this.state.password 
+                                }).then(function (response) {
+                                    console.log('login respond: ' + response.data.redirect);
+                                    if(response.data.redirect === '/profile') {
+                                        window.location = "/profile"
+                                    } else if (response.data.redirect === '/login'){
+                                        window.location = "/login"
+                                    }
+                                })
+                                .catch(function(error) {
+                                    console.log(error);
+                                    //window.location = "/login"
+                                });
                                 setTimeout(() => {
-                                alert(JSON.stringify(values, null, 2));
+                                //alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
                                 }, 400);
                             }}
