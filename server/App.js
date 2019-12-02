@@ -21,8 +21,8 @@ app.use(passport.session());
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 's4A66#Bu!KRLBA',
-  database: 'flume_rides'
+  password: 'root',
+  database: 'Flumes_Rides'
 });
 
 connection.connect(err => {
@@ -118,13 +118,16 @@ app.get("/api/user_data", function(req, res) {
 app.get('/display_rides', (req, res) => {
   
   let query = "SELECT * FROM rides;"
-  
-  connection.query(query, (err, res) => {
-    if(err) {
-        console.log(err);
-    }
-    (err)?res.send(err):res.json({rides: res});
-  });
+  connection.query('SELECT * FROM rides', function (err, data) {
+    console.log("hello");
+    (err)?res.send(err):res.json({users: data});
+});
+  // connection.query(query, (err, res) => {
+  //   if(err) {
+  //       console.log(err);
+  //   }
+  //   (err)?res.send(err):res.json({rides: res});
+  // });
 });
 
 // send rides that match the user input when they search for a destination

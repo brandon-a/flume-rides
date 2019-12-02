@@ -2,14 +2,25 @@ import React, { Component } from 'react';
 import { List, ListItem, Tabs, Tab, Grid, Cell, Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton } from 'react-mdl';
 import { Link } from 'react-router-dom';
 import GooglePlacesSearch from './GooglePlacesSearch';
-import ridecards from './ridecards';
-
+import axios from 'axios';
 
 class Ride extends Component{
     constructor(props) {
         super(props);
-        this.state = { activeTab: 0};
+        this.state = { activeTab: 0, rides:[] };
         this.state.google_destination = "";
+    }
+
+    componentDidMount(){
+        axios.get('/display_rides')
+        .then(res => {
+            console.log(res.data.users);
+            this.setState({
+                rides: res.data.users
+            })
+        }).catch(err => {
+            console.log("ERROR" + err);
+        });
     }
 
     callback_for_state = (component_data) => {
@@ -19,21 +30,23 @@ class Ride extends Component{
     toggleCategories(){
         {/* Ride 1 */}
         if(this.state.activeTab === 0){
+            let i = 1;
             return(
                 <div className="ride-grid">
+                    
                     <GooglePlacesSearch parentCallback = {this.callback_for_state}/>
-                    <ridecards />
-                    {/* Ride 1 */}
+                    {console.log(this.state.rides.length)}
+                    {console.log("hello")}
+                    {this.state.rides.map((ride, index) => (
                     <Card shadow={5} style={{minWidth:'450', margin:'auto'}}>
-                        <CardTitle style={{color: 'black', height: '176px', background: 'Url(https://vignette.wikia.nocookie.net/webarebears/images/3/37/Ice_bear.png/revision/latest/scale-to-width-down/2000?cb=20160619204008) center / cover'}}>Ride 1</CardTitle>
+                        <CardTitle style={{color: 'black', height: '176px', background: 'Url() center / cover'}}>Ride {index+1}</CardTitle>
                         <CardText>
                             <List>
-                                <ListItem>Destination:</ListItem>
-                                <ListItem>Departure:</ListItem>
-                                <ListItem>Date:</ListItem>
-                                <ListItem>Time:</ListItem>
-                                <ListItem>Cost</ListItem>
-                                <ListItem>Spots Available: </ListItem>
+                                <ListItem>Destination: {ride.otherLocation}</ListItem>
+                                <ListItem>Departure: {ride.school}</ListItem>
+                                <ListItem>Date/Time: {ride.datetime}</ListItem>
+                                <ListItem>Cost: {ride.cost}</ListItem>
+                                <ListItem>Spots Available: {ride.spotsAvailable}</ListItem>
                             </List>
                         </CardText>
                         <CardActions border>
@@ -51,93 +64,7 @@ class Ride extends Component{
                             <IconButton name="share"/>
                         </CardMenu>
                     </Card>
-
-                    {/* Ride 2 */}
-                    <Card shadow={5} style={{minWidth:'450', margin:'auto'}}>
-                        <CardTitle style={{color: 'black', height: '176px', background: 'Url(https://vignette.wikia.nocookie.net/webarebears/images/3/37/Ice_bear.png/revision/latest/scale-to-width-down/2000?cb=20160619204008) center / cover'}}>Ride 1</CardTitle>
-                        <CardText>
-                            <List>
-                                <ListItem>Destination:</ListItem>
-                                <ListItem>Departure:</ListItem>
-                                <ListItem>Date:</ListItem>
-                                <ListItem>Time:</ListItem>
-                                <ListItem>Cost:</ListItem>
-                                <ListItem>Spots Available: </ListItem>
-                            </List>
-                        </CardText>
-                        <CardActions border>
-                            <Link to="/">
-                                <Button colored>Select</Button>
-                            </Link>
-                            <Link to="/profile">
-                                <Button colored>Driver</Button>
-                            </Link>
-                            <Link to="/passengers">
-                                <Button colored>Passengers</Button>
-                            </Link>
-                        </CardActions>
-                        <CardMenu style={{color:'#fff'}}>
-                            <IconButton name="share"/>
-                        </CardMenu>
-                    </Card>
-
-                    {/* Ride 3 */}
-                    <Card shadow={5} style={{minWidth:'450', margin:'auto'}}>
-                        <CardTitle style={{color: 'black', height: '176px', background: 'Url(https://vignette.wikia.nocookie.net/webarebears/images/3/37/Ice_bear.png/revision/latest/scale-to-width-down/2000?cb=20160619204008) center / cover'}}>Ride 1</CardTitle>
-                        <CardText>
-                            <List>
-                            <ListItem>Destination:</ListItem>
-                                <ListItem>Departure:</ListItem>
-                                <ListItem>Date: </ListItem> 
-                                <ListItem>Time:</ListItem>
-                                <ListItem>Cost:</ListItem>
-                                <ListItem>Spots Available: </ListItem>
-                            </List>
-                        </CardText>
-                        <CardActions border>
-                            <Link to="/">
-                                <Button colored>Select</Button>
-                            </Link>
-                            <Link to="/profile">
-                                <Button colored>Driver</Button>
-                            </Link>
-                            <Link to="/passengers">
-                                <Button colored>Passengers</Button>
-                            </Link>
-                        </CardActions>
-                        <CardMenu style={{color:'#fff'}}>
-                            <IconButton name="share"/>
-                        </CardMenu>
-                    </Card>
-
-                    {/* Ride 4 */}
-                    <Card shadow={5} style={{minWidth:'450', margin:'auto'}}>
-                        <CardTitle style={{color: 'black', height: '176px', background: 'Url(https://vignette.wikia.nocookie.net/webarebears/images/3/37/Ice_bear.png/revision/latest/scale-to-width-down/2000?cb=20160619204008) center / cover'}}>Ride 1</CardTitle>
-                        <CardText>
-                            <List>
-                            <ListItem>Destination:</ListItem>
-                                <ListItem>Departure:</ListItem>
-                                <ListItem>Date: </ListItem> 
-                                <ListItem>Time:</ListItem>
-                                <ListItem>Cost:</ListItem>
-                                <ListItem>Spots Available: </ListItem>
-                            </List>
-                        </CardText>
-                        <CardActions border>
-                            <Link to="/">
-                                <Button colored>Select</Button>
-                            </Link>
-                            <Link to="/profile">
-                                <Button colored>Driver</Button>
-                            </Link>
-                            <Link to="/passengers">
-                                <Button colored>Passengers</Button>
-                            </Link>
-                        </CardActions>
-                        <CardMenu style={{color:'#fff'}}>
-                            <IconButton name="share"/>
-                        </CardMenu>
-                    </Card>
+                    ))}
                     
                 </div>
 
@@ -178,63 +105,7 @@ class Ride extends Component{
                         </CardMenu>
                     </Card>
 
-                    {/* Ride 2 */}
-                    <Card shadow={5} style={{minWidth:'450', margin:'auto'}}>
-                        <CardTitle style={{color: 'black', height: '176px', background: 'Url(https://www.stickpng.com/assets/images/5c17909a44f5fd02b8cd3b74.png) center / cover'}}>Ride 2</CardTitle>
-                        <CardText>
-                            <List>
-                                <ListItem>Destination:</ListItem>
-                                <ListItem>Departure:</ListItem>
-                                <ListItem>Date:</ListItem>
-                                <ListItem>Time:</ListItem>
-                                <ListItem>Cost:</ListItem>
-                                <ListItem>Spots Available: </ListItem>
-                            </List>
-                        </CardText>
-                        <CardActions border>
-                            <Link to="/">
-                                <Button colored>Select</Button>
-                            </Link>
-                            <Link to="/profile">
-                                <Button colored>Driver</Button>
-                            </Link>
-                            <Link to="/passengers">
-                                <Button colored>Passengers</Button>
-                            </Link>
-                        </CardActions>
-                        <CardMenu style={{color:'#fff'}}>
-                            <IconButton name="share"/>
-                        </CardMenu>
-                    </Card>
-
-                    {/* Ride 3 */}
-                    <Card shadow={5} style={{minWidth:'450', margin:'auto'}}>
-                        <CardTitle style={{color: 'black', height: '176px', background: 'Url(https://www.stickpng.com/assets/images/5c17909a44f5fd02b8cd3b74.png) center / cover'}}>Ride 2</CardTitle>
-                        <CardText>
-                            <List>
-                                <ListItem>Destination:</ListItem>
-                                <ListItem>Departure:</ListItem>
-                                <ListItem>Date:</ListItem>
-                                <ListItem>Time:</ListItem>
-                                <ListItem>Cost:</ListItem>
-                                <ListItem>Spots Available: </ListItem>
-                            </List>
-                        </CardText>
-                        <CardActions border>
-                            <Link to="/">
-                                <Button colored>Select</Button>
-                            </Link>
-                            <Link to="/profile">
-                                <Button colored>Driver</Button>
-                            </Link>
-                            <Link to="/passengers">
-                                <Button colored>Passengers</Button>
-                            </Link>
-                        </CardActions>
-                        <CardMenu style={{color:'#fff'}}>
-                            <IconButton name="share"/>
-                        </CardMenu>
-                    </Card>
+                   
                 </div>
             )
         }

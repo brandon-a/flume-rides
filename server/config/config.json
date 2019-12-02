@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "s4A66#Bu!KRLBA",
-    "database": "flume_rides",
+    "password": "root",
+    "database": "Flumes_Rides",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false
