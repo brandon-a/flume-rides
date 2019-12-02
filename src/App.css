@@ -107,13 +107,13 @@
 
  /* Profile Page */
 .profile-grid h2 {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Oxygen', sans-serif;
 }
 
  /* Profile Page */
 .profile-grid p {
-  font-family: 'Oxygen', sans-serif;
-  font-weight: bold;
+  font-size: 17px;
+  text-align: left;
 }
 
  /* Profile Page */
@@ -297,6 +297,32 @@
 
 }
 
+/* About Page */
+.about-grid h1 {
+  font-family: 'Oxygen', sans-serif;
+  text-align: center;
+}
+
+ /* About Page */
+ .about-grid h2 {
+  font-family: 'Oxygen', sans-serif;
+  text-align: center;
+}
+
+ /* About Page */
+ .about-grid h3 {
+  font-family: 'Oxygen', sans-serif;
+  text-align: left;
+}
+
+ /* About Page */
+ .about-grid p {
+  text-align: left;
+  /* font-family: 'Times New Roman', Times, serif; */
+  font-size: 17px;
+}
+
+
  /* Drive Page */
 .drive-body {
   margin: auto;
@@ -312,7 +338,7 @@
 
  /* Drive Page */
  .drive-grid {
-  text-align: left;
+  text-align: center;
   justify-content: center;
   width: 80%;
   height: 550px;

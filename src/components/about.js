@@ -5,28 +5,29 @@ class About extends Component{
         return(
             <div className="about-body">
                 <Grid className="about-grid">
-                        <h1>Flume Rides</h1>
-                        <p>Three students at San Jose State University wanted to create an application for ride sharing. 
-                            The goal of this application is to allow students to safely ride to and from school amongst their peers.
+                <h1>Flume Rides</h1>
+                        <p>Many students do not live in the city in which their University is at. 
+                            Many have to commute from far distances just to get to school and sometimes they want to go home. 
+                            Travel is expensive, whether it be flying, bussing, or driving. 
+                            Very often, students travel from the same area, so what if there was a way that they can safely go the distance together? 
+                            Often times students use facebook groups to coordinate ride sharing over long distances, 
+                            but this can often be unwieldy and hard to find a ride to or from the desired destination. 
+                            Our goal is to create a streamlined platform that simplifies this process.
                             
                         </p>
-                        <p>As a result we created a long-distance rideshare web application that caters specifically to college students. 
-                            The focus is to allow students to commute long distances for low cost with other students. We want you to have
-                            access to a safe alternative to facebook groups which can be hard to navigate and search. 
+                        <p>This problem is worth solving because there are millions of college students across the country that would appreciate 
+                            using an app that vastly simplifies the process of getting between school and home. 
+                            Especially with the rising costs. 
+                            Popular applications such as Uber or Lyft are really only meant to be used for short distance travel, 
+                            and this fills a niche within the market.                            
+                        </p>
+                        <p>
+
+                        </p>
+                        <p>
                             
                         </p>
-                        <p>Three students at San Jose State University wanted to create an application for ride sharing. 
-                            The goal of this application is to allow students to safely ride to and from school amongst their peers.
-                            
-                        </p>
-                        <p>Three students at San Jose State University wanted to create an application for ride sharing. 
-                            The goal of this application is to allow students to safely ride to and from school amongst their peers.
-                            
-                        </p>
-                        <p>Three students at San Jose State University wanted to create an application for ride sharing. 
-                            The goal of this application is to allow students to safely ride to and from school amongst their peers.
-                            
-                        </p>
+
 
                 </Grid>
                 <Grid className="about-grid">
@@ -34,11 +35,14 @@ class About extends Component{
                 </Grid>
                 <Grid className="about-grid">
                     <Cell col={4}>
-                            <h3> 
+                    <h3> 
                                 Brandon Archbold
                             </h3>
                             <p>
-                                meow meow meow meow?
+                                Major: Computer Science
+                            </p>
+                            <p>
+                                Graduation: Fall 2019
                             </p>
                         </Cell>
                         <Cell col={4}>
@@ -46,7 +50,10 @@ class About extends Component{
                                 Connie Huynh 
                             </h3>
                             <p>
-                                meow meow meow meow meow 
+                                Major: Computer Science
+                            </p>
+                            <p>
+                                Graduation: Spring 2020
                             </p>
                         </Cell>
                         <Cell col={4}>
@@ -54,7 +61,10 @@ class About extends Component{
                                 John McGinley
                             </h3>
                             <p>
-                                MEOW MEOW MEOW MEOW MEOW
+                                Major: Computer Science
+                            </p>
+                            <p>
+                                Graduation: Fall 2019
                             </p>
                         </Cell>
                 </Grid>

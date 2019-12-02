@@ -23,7 +23,7 @@ class Drive extends Component{
             <div className="drive-body">
                 <Grid className="drive-grid">
                     <Cell col={12}>
-                        <h1>
+                        <h1 style={{ fontFamily: 'Oxygen'}}>
                             Create a Ride
                         </h1>
                         <Formik
@@ -40,7 +40,7 @@ class Drive extends Component{
                                 if (!values.date || values.date === "date")
                                 errors.date = "Date Required";
                                 if (!values.toFrom || values.toFrom === "toFrom")
-                                errors.toFrom = "To(0) or From(1) Required";
+                                errors.toFrom = "Enter a 0 for TO, or 1 for FROM";
                                 else if (
                                 !/^(0|1)$/i.test(
                                     values.toFrom
