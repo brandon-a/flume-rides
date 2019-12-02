@@ -49,9 +49,6 @@ class Profile extends Component{
                             style={{height: '250px'}}
                         />
                         <p style={{width:'75%', margin: 'auto', paddingTop: '1em'}}>
-                            About me: hello hello meow meow cookie yum yum hungry. hello hello meow meow cookie yum yum hungry.
-                            hello hello meow meow cookie yum yum hungry. hello hello meow meow cookie yum yum hungry.
-                            hello hello meow meow cookie yum yum hungry. hello hello meow meow cookie yum yum hungry. 
                         </p>
                     </Cell>
                     <Cell col={6}>

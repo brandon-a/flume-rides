@@ -22,7 +22,8 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 's4A66#Bu!KRLBA',
-  database: 'flume_rides'
+  database: 'flume_rides',
+  multipleStatements: true
 });
 
 connection.connect(err => {
@@ -118,13 +119,16 @@ app.get("/api/user_data", function(req, res) {
 app.get('/display_rides', (req, res) => {
   
   let query = "SELECT * FROM rides;"
-  
-  connection.query(query, (err, res) => {
-    if(err) {
-        console.log(err);
-    }
-    (err)?res.send(err):res.json({rides: res});
-  });
+  connection.query('SELECT * FROM rides', function (err, data) {
+    console.log("hello");
+    (err)?res.send(err):res.json({users: data});
+});
+  // connection.query(query, (err, res) => {
+  //   if(err) {
+  //       console.log(err);
+  //   }
+  //   (err)?res.send(err):res.json({rides: res});
+  // });
 });
 
 // send rides that match the user input when they search for a destination
@@ -224,30 +228,41 @@ app.post('/new_ride', (req, res) => {
   //TODO: Need to actually get the email address of this user
   let email = req.session.passport.user;
 
-  let school = "";
-
   let school_query = "SELECT school FROM users WHERE email = '" + email + "';"
 
-  connection.query(school_query, (err, res) => {
+  console.log('in /new_ride before subquery');
+  const school = connection.query(school_query, function(err, result) {
+
     if(err) {
+        //console.log("ERRORRRR");
         console.log(err);
     }
-    school = res;
+    // oops
+    //console.log('result = ' + result + ', result.school = ' + result.school + ', result.body = ' + result.body + ', result.body.school = ' + result.body.school);
+    //var obj = JSON.parse(result); 
+    //console.log('JSON.parse of result is: ' + obj);
+    //console.log(result);
+    return result;
   });
+  console.log('----in /new_ride after subquery, school proto = ' + school.__proto__);
+  console.log('--------------------------------------------------');
+  console.log(school);
 
   let datetime = req.body.ride_entry.datetime;
   let otherLocation = req.body.ride_entry.otherLocation;
-  let toSchool = req.body.ride_entry.toSchool;
+  let toSchool = req.body.ride_entry.schoolBool;
   let cost = req.body.ride_entry.cost;
 
   console.log('QUERYING RIDE TABLE TO ADD THIS RIDE');
-  let query = "INSERT INTO `rides` (`email`, `datetime`, `otherLocation`, `school`, `toschool`, `cost`, `spotsAvailable`) VALUES ('" + email + "', "  + datetime + "', '" + otherLocation + "', '" + source_location + "', 1, '" + cost + "', 3);";
+  let query = "INSERT INTO `rides` (`email`, `datetime`, `otherLocation`, `school`, `toschool`, `cost`, `spotsAvailable`) VALUES ('" + email + "', "  + datetime + "', '" + otherLocation + "', '" + school + "', '" + toSchool + "', " + cost + "', 3);";
 
-  connection.query(query, (err, res) => {
+  connection.query(query, (err, result) => {
+    //print as a delay
+    console.log("printing main query")
       if(err){
           console.log(err);
       } 
-      console.log('entry added, result was ' + res);
+      console.log('entry added, result was ' + result);
   });
 
 

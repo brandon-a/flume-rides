@@ -7,9 +7,8 @@ import GooglePlacesSearch from './GooglePlacesSearch';
 class Drive extends Component{
     state = {
         datetime: '',
-        school: '',
         otherLocation: '',
-        // TODO: toSchool: ,
+        toSchool: 0,
         cost: '',
         google_destination: ''
     }
@@ -23,30 +22,41 @@ class Drive extends Component{
             <div className="drive-body">
                 <Grid className="drive-grid">
                     <Cell col={12}>
-                        <h1>
+                        <h1 style={{ fontFamily: 'Oxygen'}}>
                             Create a Ride
                         </h1>
                         <Formik
                             validate={values => {
                                 let errors = {};
-                                if (!values.otherLocation || values.otherLocation === "otherLocation")
-                                errors.otherLocation = "Destination Required";
-                                if (!values.school || values.school === "School")
-                                errors.school = "Departure Required";
+                                //if (!values.otherLocation || values.otherLocation === "otherLocation")
+                                //errors.otherLocation = "Destination Required";
+                                //if (!values.school || values.school === "School")
+                                //errors.school = "Departure Required";
                                 if (!values.cost || values.cost === "cost")
                                 errors.cost = "Cost Required";
                                 if (!values.time || values.time === "time")
                                 errors.time = "Time Required";
                                 if (!values.date || values.date === "date")
                                 errors.date = "Date Required";
+                                if (!values.toFrom || values.toFrom === "toFrom")
+                                errors.toFrom = "Enter a 0 for TO, or 1 for FROM";
+                                else if (
+                                !/^(0|1)$/i.test(
+                                    values.toFrom
+                                )
+                                ) {
+                                errors.toFrom =
+                                    "Must be a 0 or 1";
+                                }
+
 
                                 //TODO: ADD BOOLEAN FOR SCHOOL
                                 //valid datetime = 2010-04-30 07:27:39
                                 this.setState({datetime: values.date + ' ' + values.time + ':00'});
-                                this.setState({otherLocation: values.otherLocation});
-                                this.setState({school: values.school});
+                                //this.setState({otherLocation: values.otherLocation});
+                                //this.setState({school: values.school});
                                 this.setState({cost: values.cost});
-                                //this.setState({schoolBool: values.schoolBool});
+                                this.setState({schoolBool: values.toFrom});
 
                                 // else if (
                                 //     !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i.test(
@@ -60,12 +70,13 @@ class Drive extends Component{
 
                             }}
                             onSubmit={(values, { setSubmitting }) => {
+                                console.log('creating ride_entry in drive.js....');
                                 const ride_entry = {
                                     datetime: this.state.datetime,
-                                    otherLocationn: this.state.otherLocation,
-                                    school: this.state.school,
-                                    cost: this.state.cost
-                                    //schoolBool: this.state.schoolBool
+                                    otherLocation: this.state.google_destination,
+                                    //school: this.state.school,
+                                    cost: this.state.cost,
+                                    schoolBool: this.state.schoolBool
                                 };
                                 console.log('INSIDE ONSUBMIT BEFORE POST');
                                 axios.post('/new_ride', { ride_entry })
@@ -83,16 +94,11 @@ class Drive extends Component{
                             {({ isSubmitting }) => (
                                 <Cell col={12}>
                                 <Form>
-                                <GooglePlacesSearch parentCallback = {this.callback_for_state}/> 
+                                Other Location: <GooglePlacesSearch parentCallback = {this.callback_for_state}/> 
                                     <div className="input-field">
-                                    <label htmlFor="destination">Destination </label>
-                                        <Field type="destination" name="destination" />                           
-                                        <ErrorMessage name="destination" component="div" />
-                                    </div>
-                                    <div className="input-field">
-                                        <label htmlFor="departure">Departure </label>
-                                        <Field type="departure" name="departure" />
-                                        <ErrorMessage name="departure" component="div" />
+                                        <label htmlFor="toFrom">To (0) / From (1) </label>
+                                        <Field type="boolean" name="toFrom" />                                
+                                        <ErrorMessage name="toFrom" component="div" />
                                     </div>
                                     <div className="input-field">
                                         <label htmlFor="cost">Cost </label>
