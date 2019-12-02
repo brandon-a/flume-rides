@@ -6,16 +6,22 @@ import ridecards from './ridecards';
 
 
 class Ride extends Component{
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={ activeTab: 0};
+        this.state = { activeTab: 0};
+        this.state.google_destination = "";
     }
+
+    callback_for_state = (component_data) => {
+        this.setState({google_destination : component_data});
+    };
+
     toggleCategories(){
         {/* Ride 1 */}
         if(this.state.activeTab === 0){
             return(
                 <div className="ride-grid">
-                    <GooglePlacesSearch />
+                    <GooglePlacesSearch parentCallback = {this.callback_for_state}/>
                     <ridecards />
                     {/* Ride 1 */}
                     <Card shadow={5} style={{minWidth:'450', margin:'auto'}}>
