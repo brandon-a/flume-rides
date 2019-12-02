@@ -8,7 +8,10 @@ class CreateAccount extends Component{
         name: '',
         email: '',
         school: '',
-        passsword: ''
+        passsword: '',
+        phone: '',
+        car: '',
+        major: ''
     }
 
     render(){
@@ -51,6 +54,9 @@ class CreateAccount extends Component{
                         this.setState({name: values.firstName + ' ' + values.lastName});
                         this.setState({email: values.email});
                         this.setState({school: values.university});
+                        this.setState({phone: values.phone});
+                        this.setState({car: values.car});
+                        this.setState({major: values.major});
                         this.setState({password: values.password});
                         return errors;
                     }}
@@ -59,6 +65,9 @@ class CreateAccount extends Component{
                             name: this.state.name,
                             email: this.state.email,
                             school: this.state.school,
+                            phone: this.state.phone,
+                            car: this.state.car,
+                            major: this.state.major,
                             password: this.state.password
                         };
                         console.log('INSIDE ONSUBMIT BEFORE POST');
@@ -98,6 +107,21 @@ class CreateAccount extends Component{
                                 <label htmlFor="university">University </label>
                                 <Field type="university" name="university" />                                
                                 <ErrorMessage name="university" component="div" />
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="phone">Phone </label>
+                                <Field type="phone" name="phone" />                                
+                                <ErrorMessage name="phone" component="div" />
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="car">Car </label>
+                                <Field type="car" name="car" />                                
+                                <ErrorMessage name="car" component="div" />
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="major">Major </label>
+                                <Field type="major" name="major" />                                
+                                <ErrorMessage name="major" component="div" />
                             </div>
                             <div className="input-field">
                                 <label htmlFor="email">Email </label>

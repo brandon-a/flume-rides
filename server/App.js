@@ -74,7 +74,10 @@ app.post("/api/signup", function(req, res) {
       name: req.body.user.name,
       email: req.body.user.email,
       school: req.body.user.school,
-      passwordHash: req.body.user.password
+      passwordHash: req.body.user.password,
+      phone: req.body.user.phone,
+      car: req.body.user.car,
+      major: req.body.user.major
   }).then(function() {
       var redir = { redirect: "/login"};
       res.json(redir);
@@ -89,7 +92,7 @@ app.post("/api/signup", function(req, res) {
 });
 //
 // Route for logging user out
-app.get("/logout", function(req, res) {
+app.post("/logout", function(req, res) {
   req.session.destroy();
   var redir = { redirect: "/" };
   res.json(redir);
@@ -110,6 +113,57 @@ app.get("/api/user_data", function(req, res) {
   }
 });
 
+// Display any generic rides in the database so that ride.js is not empty
+// when initially rendered
+app.get('/display_rides', (req, res) => {
+  
+  let query = "SELECT * FROM rides;"
+  
+  connection.query(query, (err, res) => {
+    if(err) {
+        console.log(err);
+    }
+    (err)?res.send(err):res.json({rides: res});
+  });
+});
+
+// send rides that match the user input when they search for a destination
+app.get('/matching_rides', (req, res) => {
+  let schoolbool = req.body.obj.activeTab;
+  let otherLocation = req.body.obj.google_destination;
+  let email = req.session.passport.user;
+  let query = "";
+  let school = "";
+
+  let school_query = "SELECT school FROM users WHERE email = '" + email + "';"
+  connection.query(school_query, (err, res) => {
+    if(err) {
+        console.log(err);
+    }
+    school = res;
+  });
+
+  // 0 is from, 1 is to school
+  // if 0, destination is where user is going to, from their school
+  // if 1, destination is actually where user is coming from
+  if(schoolbool === 0) {
+    query = "SELECT * FROM rides WHERE otherLocation = '" + otherLocation + "' AND school = '" + school + "' AND toschool = '" + 0 + "';";
+  } else {
+    query = "SELECT * FROM rides WHERE otherLocation = '" + otherLocation + "' AND school = '" + school + "' AND toschool = '" + 1 + "';";
+  }
+  
+
+  connection.query(query, (err, res) => {
+    if(err) {
+        console.log(err);
+    }
+    console.log('successfully queried destination of user');
+    console.log(res);
+    (err)?res.send(err):res.json({rides: res});
+  });
+});
+  
+
 
 app.get('/profile', (req, res) => {
   let email = req.session.passport.user;
@@ -119,7 +173,7 @@ app.get('/profile', (req, res) => {
       if(err) {
           console.log(err);
       }
-      console.log('successfully queried');
+      console.log('successfully queried user profile');
       console.log(result);
       (err)?res.send(err):res.json({users: result});
   });
@@ -168,13 +222,26 @@ app.post('/new_ride', (req, res) => {
   console.log('Creating a new ride....');
   //let email = req.body.user.email; Need to figure this out
   //TODO: Need to actually get the email address of this user
+  let email = req.session.passport.user;
+
+  let school = "";
+
+  let school_query = "SELECT school FROM users WHERE email = '" + email + "';"
+
+  connection.query(school_query, (err, res) => {
+    if(err) {
+        console.log(err);
+    }
+    school = res;
+  });
+
   let datetime = req.body.ride_entry.datetime;
-  let destination = req.body.ride_entry.destination;
-  let source_location = req.body.ride_entry.source_location;
+  let otherLocation = req.body.ride_entry.otherLocation;
+  let toSchool = req.body.ride_entry.toSchool;
   let cost = req.body.ride_entry.cost;
 
-  console.log('datetime: ' + datetime + ', destination: ' + destination);
-  let query = "INSERT INTO `rides` (`email`, `datetime`, `destination`, `source_location`, `toschool`, `cost`, `spotsAvailable`) VALUES ('test@sjsu.edu', '" + datetime + "', '" + destination + "', '" + source_location + "', 1, '" + cost + "', 4);";
+  console.log('QUERYING RIDE TABLE TO ADD THIS RIDE');
+  let query = "INSERT INTO `rides` (`email`, `datetime`, `otherLocation`, `school`, `toschool`, `cost`, `spotsAvailable`) VALUES ('" + email + "', "  + datetime + "', '" + otherLocation + "', '" + source_location + "', 1, '" + cost + "', 3);";
 
   connection.query(query, (err, res) => {
       if(err){
@@ -185,6 +252,8 @@ app.post('/new_ride', (req, res) => {
 
 
 });
+
+//app.post('/join_ride')
 
 // temp code from routes *****************************************************************************************
 
