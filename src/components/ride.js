@@ -74,20 +74,20 @@ class Ride extends Component{
         else if(this.state.activeTab === 1){
             return(
                 <div className="ride-grid">
-                    <GooglePlacesSearch />
-                    {/* Ride 1 */}
+                    <GooglePlacesSearch parentCallback = {this.callback_for_state}/>
+                    {console.log(this.state.rides.length)}
+                    {console.log("hello")}
+                    {this.state.rides.map((ride, index) => (
                     <Card shadow={5} style={{minWidth:'450', margin:'auto'}}>
-                        <CardTitle style={{color: 'black', height: '176px', background: 'Url(https://www.stickpng.com/assets/images/5c17909a44f5fd02b8cd3b74.png) center / cover'}}>Ride 2</CardTitle>
+                        <CardTitle style={{color: 'black', height: '176px', background: 'Url() center / cover'}}>Ride {index+1}</CardTitle>
                         <CardText>
                             <List>
-                                <ListItem>Destination:</ListItem>
-                                <ListItem>Departure:</ListItem>
-                                <ListItem>Date:</ListItem>
-                                <ListItem>Time:</ListItem>
-                                <ListItem>Cost:</ListItem>
-                                <ListItem>Spots Available: </ListItem>
+                                <ListItem>Destination: {ride.otherLocation}</ListItem>
+                                <ListItem>Departure: {ride.school}</ListItem>
+                                <ListItem>Date/Time: {ride.datetime}</ListItem>
+                                <ListItem>Cost: {ride.cost}</ListItem>
+                                <ListItem>Spots Available: {ride.spotsAvailable}</ListItem>
                             </List>
-
                         </CardText>
                         <CardActions border>
                             <Link to="/">
@@ -104,7 +104,7 @@ class Ride extends Component{
                             <IconButton name="share"/>
                         </CardMenu>
                     </Card>
-
+                    ))}
                    
                 </div>
             )

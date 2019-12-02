@@ -39,6 +39,17 @@ class Drive extends Component{
                                 errors.time = "Time Required";
                                 if (!values.date || values.date === "date")
                                 errors.date = "Date Required";
+                                if (!values.toFrom || values.toFrom === "toFrom")
+                                errors.toFrom = "To(0) or From(1) Required";
+                                else if (
+                                !/^(0|1)$/i.test(
+                                    values.toFrom
+                                )
+                                ) {
+                                errors.toFrom =
+                                    "Must be a 0 or 1";
+                                }
+
 
                                 //TODO: ADD BOOLEAN FOR SCHOOL
                                 //valid datetime = 2010-04-30 07:27:39
@@ -83,16 +94,11 @@ class Drive extends Component{
                             {({ isSubmitting }) => (
                                 <Cell col={12}>
                                 <Form>
-                                <GooglePlacesSearch parentCallback = {this.callback_for_state}/> 
+                                Other Location: <GooglePlacesSearch parentCallback = {this.callback_for_state}/> 
                                     <div className="input-field">
-                                    <label htmlFor="destination">Destination </label>
-                                        <Field type="destination" name="destination" />                           
-                                        <ErrorMessage name="destination" component="div" />
-                                    </div>
-                                    <div className="input-field">
-                                        <label htmlFor="departure">Departure </label>
-                                        <Field type="departure" name="departure" />
-                                        <ErrorMessage name="departure" component="div" />
+                                        <label htmlFor="toFrom">To (0) / From (1) </label>
+                                        <Field type="boolean" name="toFrom" />                                
+                                        <ErrorMessage name="toFrom" component="div" />
                                     </div>
                                     <div className="input-field">
                                         <label htmlFor="cost">Cost </label>
